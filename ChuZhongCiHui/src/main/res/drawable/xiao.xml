@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" android:oneshot="false">
+
+    <item android:drawable="@drawable/xiao0007" android:duration="100"></item>
+    <item android:drawable="@drawable/xiao0008" android:duration="100"></item>
+    <item android:drawable="@drawable/xiao0009" android:duration="100"></item>
+    <item android:drawable="@drawable/xiao0010" android:duration="100"></item>
+    <item android:drawable="@drawable/xiao0011" android:duration="100"></item>
+    <item android:drawable="@drawable/xiao0012" android:duration="100"></item>
+    <item android:drawable="@drawable/xiao0013" android:duration="100"></item>
+    <item android:drawable="@drawable/xiao0014" android:duration="100"></item>
+    <item android:drawable="@drawable/xiao0015" android:duration="100"></item>
+    <item android:drawable="@drawable/xiao0016" android:duration="100"></item>
+
+</animation-list>

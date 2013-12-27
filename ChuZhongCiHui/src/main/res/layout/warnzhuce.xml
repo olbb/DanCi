@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="1280dp"
+    android:layout_height="match_parent" android:gravity="center"
+    android:background="@color/white">
+
+
+
+    <LinearLayout
+        android:layout_width="600dp" android:orientation="vertical" android:paddingLeft="100dp"
+        android:layout_height="wrap_content" android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp">
+
+        <TextView
+            android:layout_width="fill_parent" android:textSize="40sp"
+            android:layout_height="wrap_content" android:layout_marginBottom="20dp"
+            android:textColor="@color/gblue" android:text="温馨提示"/>
+
+        <TextView
+            android:layout_width="wrap_content" android:layout_marginBottom="40dp"
+            android:gravity="left" android:layout_gravity="center"
+            android:layout_height="wrap_content" android:textSize="22sp"  android:textColor="#000000"
+            android:text="排行榜需要关联网校账户，\n快到个人中心轻松登陆/注册吧！"   android:id="@+id/qingjiesuo"/>
+
+
+        <Button
+            android:layout_width="wrap_content" android:text="个人中心"
+            android:layout_height="wrap_content" style="@style/WarnBtn"
+             android:paddingLeft="50dp" android:paddingRight="50dp"
+            android:id="@+id/warn_zhuce"
+            android:layout_marginStart="300dp"/>
+
+        </LinearLayout>
+
+
+
+
+
+</LinearLayout>

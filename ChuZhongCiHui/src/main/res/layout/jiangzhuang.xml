@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="675dp" android:layout_height="457dp" android:background="@drawable/jz">
+
+    <ImageView
+        android:layout_width="wrap_content" android:layout_centerInParent="true"
+        android:src="@drawable/chenghao1" android:paddingTop="50dp" android:id="@+id/chenghao"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content" android:layout_alignParentRight="true"
+        android:layout_marginTop="138dp" android:layout_marginRight="505dp" android:textStyle="bold"
+        android:text="Dear" android:textSize="28sp" android:textColor="#cb4c1a"
+        android:maxWidth="122dp" android:singleLine="true" android:id="@+id/chenghao_name"
+        android:layout_height="wrap_content" />
+
+
+</RelativeLayout>

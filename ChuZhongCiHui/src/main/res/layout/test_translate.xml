@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:id="@+id/test_translate"
+     >
+
+    <ImageView android:layout_width="wrap_content" android:layout_height="66dp" android:src="@drawable/answer_wrong"
+        android:visibility="visible" android:layout_marginTop="-10dp" android:layout_marginLeft="50dp"
+        android:id="@+id/test_result" />
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="28sp"
+                android:text="He is a _____" android:id="@+id/test_toptext"/>
+
+
+
+        </LinearLayout>
+
+
+
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="24sp"
+            android:text="它是一条狗"  android:layout_marginTop="5dp" android:id="@+id/test_bottomtext"/>
+
+        <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
+            android:id="@+id/test_answer" android:layout_marginTop="10dp">
+
+            <RadioButton style="@style/RadioBtn" android:text="dog" android:textSize="24sp"
+                android:id="@+id/test_answer_a"/>
+
+            <ImageView android:layout_width="wrap_content" android:layout_height="66dp" android:src="@drawable/answer_right"
+                android:layout_marginTop="-67dp" android:layout_marginLeft="750dp" android:visibility="visible"
+                android:id="@+id/test_result_a"/>
+
+            <RadioButton style="@style/RadioBtn" android:text="cat" android:textSize="24sp"
+                android:id="@+id/test_answer_b"/>
+
+            <ImageView android:layout_width="wrap_content" android:layout_height="66dp" android:src="@drawable/answer_right"
+                android:layout_marginTop="-67dp" android:layout_marginLeft="750dp"
+                android:id="@+id/test_result_b" android:visibility="visible"/>
+
+            <RadioButton style="@style/RadioBtn" android:text="snake" android:textSize="24sp"
+                android:id="@+id/test_answer_c"/>
+
+            <ImageView android:layout_width="wrap_content" android:layout_height="66dp" android:src="@drawable/answer_right"
+                android:layout_marginTop="-67dp" android:layout_marginLeft="750dp"
+                android:id="@+id/test_result_c" android:visibility="visible"/>
+
+            <RadioButton style="@style/RadioBtn" android:text="ghost" android:textSize="24sp"
+                android:id="@+id/test_answer_d"/>
+
+            <ImageView android:layout_width="wrap_content" android:layout_height="66dp" android:src="@drawable/answer_wrong"
+                android:layout_marginTop="-67dp" android:layout_marginLeft="750dp"
+                android:id="@+id/test_result_d" android:visibility="visible"/>
+
+
+        </RadioGroup>
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

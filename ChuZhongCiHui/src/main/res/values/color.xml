@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="blue">#61b1fc</color>
+    <color name="green">#92ce50</color>
+    <color name="dblue">#3258b0</color>
+    <color name="grey">#e2e2e2</color>
+    <color name="white">#ffffffff</color>
+    <color name="orange">#e69730</color>
+    <color name="brown">#833100</color>
+    <color name="yellow">#fffc01</color>
+    <color name="gblue">#487efc</color>
+    <color name="red">#de4c00</color>
+
+    <color name="dgreen">#4bc207</color>
+    <color name="lgreen">#7ccf5b</color>
+
+    <color name="gbluep">#145277</color>
+
+
+</resources>

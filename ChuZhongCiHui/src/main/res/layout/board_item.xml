@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    android:layout_width="455dp" android:layout_height="66dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp" android:background="#dddddd"/>
+
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="455dp" android:layout_height="66dp" android:gravity="center_vertical" android:clickable="false">
+
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="66dp"/>
+
+        <RelativeLayout
+            android:layout_width="55dp" android:background="@drawable/board_touxiang_bg"
+            android:layout_height="58dp" android:layout_marginLeft="20dp">
+            <ImageView
+                android:layout_width="49dp" android:src="@drawable/img" android:layout_centerInParent="true"
+                android:layout_height="52dp" android:id="@+id/board_user_img" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="95dp" android:id="@+id/board_user_name"
+            android:textSize="16sp" android:singleLine="true"
+            android:text="王大锤" android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp" android:gravity="center_vertical"
+            android:layout_height="match_parent" />
+
+
+
+        <TextView
+            android:layout_width="110dp" android:id="@+id/board_user_time"
+            android:textSize="18sp" android:gravity="center_vertical"
+            android:text="3小时20分" android:layout_marginLeft="10dp" android:layout_marginTop="5dp"
+            android:layout_height="match_parent" />
+
+
+
+
+
+        <TextView
+            android:layout_width="55dp" android:layout_marginLeft="10dp"
+            android:text="+53" android:textSize="18sp" android:id="@+id/board_user_qushi"
+            android:layout_height="match_parent" android:gravity="fill_vertical"
+            android:layout_marginTop="5dp"
+            />
+
+
+        <TextView
+            android:layout_width="70dp" android:textSize="38sp"
+            android:text="01" android:layout_marginTop="5dp" android:textColor="@color/orange"
+            android:layout_marginLeft="10dp" android:id="@+id/board_user_stage"
+            android:layout_height="match_parent" android:gravity="center" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
