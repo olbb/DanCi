@@ -1,0 +1,131 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.readboy.learnwordx"
+    android:versionCode="12"
+    android:versionName="1.7.4"
+    android:installLocation="internalOnly">
+
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="17"
+        android:maxSdkVersion="18" />
+
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:name=".LearnApp"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppBaseTheme">
+
+
+        <activity
+            android:name=".Entrance"
+            android:clearTaskOnLaunch="true"
+            android:configChanges="fontScale"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Barrier"
+            android:launchMode="singleInstance"
+            android:clearTaskOnLaunch="true"
+            android:configChanges="fontScale"
+            android:screenOrientation="sensorLandscape" />
+
+        <activity
+            android:name=".SelectWord"
+            android:clearTaskOnLaunch="true"
+            android:launchMode="singleInstance"
+            android:configChanges="fontScale"
+            android:screenOrientation="sensorLandscape"></activity>
+        <activity
+            android:name=".LearnWord"
+            android:clearTaskOnLaunch="true"
+            android:configChanges="fontScale|orientation"
+            android:screenOrientation="sensorLandscape"></activity>
+
+        <activity
+            android:name=".TestWords"
+            android:clearTaskOnLaunch="true"
+            android:configChanges="fontScale"
+            android:screenOrientation="sensorLandscape"></activity>
+
+        <activity
+            android:name=".ErrorWord"
+            android:configChanges="fontScale"
+            android:clearTaskOnLaunch="true"
+            android:screenOrientation="sensorLandscape"></activity>
+
+
+        <activity
+            android:name=".LearnErrorWord"
+            android:clearTaskOnLaunch="true"
+            android:screenOrientation="sensorLandscape"></activity>
+
+        <activity
+            android:name=".Config"
+            android:clearTaskOnLaunch="true"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/dialog"></activity>
+
+
+        <activity
+            android:name=".Rate"
+
+            android:launchMode="singleInstance"
+            android:clearTaskOnLaunch="true"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/dialog"></activity>
+
+        <activity
+            android:name=".Board"
+            android:clearTaskOnLaunch="true"
+            android:screenOrientation="sensorLandscape" />
+
+        <activity
+            android:name=".Warn"
+            android:theme="@style/dialog"
+            android:clearTaskOnLaunch="true"
+            android:screenOrientation="sensorLandscape" />
+
+        <activity
+            android:name=".WarnZhuCe"
+            android:theme="@style/dialog"
+            android:clearTaskOnLaunch="true"
+            android:screenOrientation="sensorLandscape" />
+
+        <!--<activity android:name=".ChengHao"-->
+        <!--android:theme="@style/dialog"-->
+        <!--android:clearTaskOnLaunch="true"-->
+        <!--android:screenOrientation="l
+        andscape"/>-->
+
+
+        <!--<receiver-->
+            <!--android:name="MWidget"-->
+            <!--android:label="@string/app_name"-->
+            <!--android:icon="@drawable/ic_launcher">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />-->
+                <!--<action android:name="com.readboy.Launcher.pager3" />-->
+                <!--<action android:name="UPDATE_LearnWord_Widget" />-->
+            <!--</intent-filter>-->
+            <!--<meta-data-->
+                <!--android:name="android.appwidget.provider"-->
+                <!--android:resource="@xml/cihui" />-->
+        <!--</receiver>-->
+
+    </application>
+
+
+</manifest>

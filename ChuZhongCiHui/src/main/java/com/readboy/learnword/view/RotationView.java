@@ -4,8 +4,6 @@ import android.content.Context;
 import android.graphics.Camera;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
@@ -25,17 +23,17 @@ public class RotationView extends ImageView {
     private boolean onAnimation = true;
     private int rotateDegree = 5;
 
-//    private boolean isFirst = true;
+    //    private boolean isFirst = true;
     private float minScale = 0.95f;
     private int vWidth;
     private int vHeight;
-    private boolean isFinish = true,isActionMove=false,isScale=false;
+    private boolean isFinish = true, isActionMove = false, isScale = false;
     private Camera camera;
 
     boolean XbigY = false;
     float RolateX = 0;
     float RolateY = 0;
-    OnViewClick onclick=null;
+    OnViewClick onclick = null;
 
     public RotationView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -56,8 +54,8 @@ public class RotationView extends ImageView {
         onAnimation = oo;
     }
 
-    public void setOnClickIntent(OnViewClick onclick){
-        this.onclick=onclick;
+    public void setOnClickIntent(OnViewClick onclick) {
+        this.onclick = onclick;
     }
 
     @Override
@@ -82,15 +80,15 @@ public class RotationView extends ImageView {
             return true;*/
         switch (event.getAction() & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN:
-                if(isFinish){
+                if (isFinish) {
                     float X = event.getX();
                     float Y = event.getY();
                     RolateX = vWidth / 2 - X;
                     RolateY = vHeight / 2 - Y;
                     XbigY = Math.abs(RolateX) > Math.abs(RolateY) ? true : false;
 
-                    isScale = X > vWidth / 3 && X < vWidth * 2 / 3 && Y > vHeight / 3&& Y < vHeight * 2 / 3;
-                    isActionMove=false;
+                    isScale = X > vWidth / 3 && X < vWidth * 2 / 3 && Y > vHeight / 3 && Y < vHeight * 2 / 3;
+                    isActionMove = false;
 
                     if (isScale) {
                         handler.sendEmptyMessage(1);
@@ -100,11 +98,12 @@ public class RotationView extends ImageView {
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                float x=event.getX();float y=event.getY();
-                if(x>vWidth || y>vHeight || x<0 || y<0){
-                    isActionMove=true;
-                }else{
-                    isActionMove=false;
+                float x = event.getX();
+                float y = event.getY();
+                if (x > vWidth || y > vHeight || x < 0 || y < 0) {
+                    isActionMove = true;
+                } else {
+                    isActionMove = false;
                 }
                 break;
             case MotionEvent.ACTION_UP:
@@ -115,7 +114,7 @@ public class RotationView extends ImageView {
         return true;
     }
 
-    private void touchUpCancel(){
+    private void touchUpCancel() {
         if (isScale) {
             handler.sendEmptyMessage(6);
         } else {
@@ -124,9 +123,9 @@ public class RotationView extends ImageView {
     }
 
     public void exit() {
-        if(rolateHandler != null)
+        if (rolateHandler != null)
             rolateHandler.removeCallbacksAndMessages(null);
-        if(handler != null)
+        if (handler != null)
             handler.removeCallbacksAndMessages(null);
     }
 
@@ -137,6 +136,7 @@ public class RotationView extends ImageView {
     private Handler rolateHandler = new Handler() {
         private Matrix matrix = new Matrix();
         private float count = 0;
+
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -163,7 +163,7 @@ public class RotationView extends ImageView {
                         rolateHandler.sendEmptyMessage(3);
                     } else {
                         isFinish = true;
-                        if(!isActionMove && onclick!=null){
+                        if (!isActionMove && onclick != null) {
                             onclick.onClick(RotationView.this);
                         }
                     }
@@ -179,7 +179,7 @@ public class RotationView extends ImageView {
         }
     };
 
-    private synchronized void BeginRolate(Matrix matrix, float rolateX,float rolateY) {
+    private synchronized void BeginRolate(Matrix matrix, float rolateX, float rolateY) {
         // Bitmap bm = getImageBitmap();
         int scaleX = (int) (vWidth * 0.5f);
         int scaleY = (int) (vHeight * 0.5f);
@@ -209,6 +209,7 @@ public class RotationView extends ImageView {
         private Matrix matrix = new Matrix();
         private float s;
         int count = 0;
+
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -231,7 +232,7 @@ public class RotationView extends ImageView {
                         handler.sendEmptyMessage(2);
                     } else {
                         isFinish = true;
-                        if(!isActionMove && onclick!=null){
+                        if (!isActionMove && onclick != null) {
                             onclick.onClick(RotationView.this);
                         }
                     }

@@ -5,15 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -41,8 +36,6 @@ import com.readboy.learnword.util.Word;
 import com.readboy.learnword.view.SmallPinBar;
 import com.readboy.learnword.view.TouchpadView;
 
-import junit.framework.Test;
-
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -54,16 +47,15 @@ import java.util.List;
  */
 
 
+public class TestWords extends Activity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener, Chronometer.OnChronometerTickListener {
 
-public class TestWords extends Activity implements RadioGroup.OnCheckedChangeListener,View.OnClickListener,Chronometer.OnChronometerTickListener {
-
-    String tag="LearnWord";
+    String tag = "LearnWord";
     public Chronometer timer;
     int index;
-    boolean gameover=false;
+    boolean gameover = false;
     Word word;
     Data data;
-    int step=1;//2中译英1英译中3听写4造句
+    int step = 1;//2中译英1英译中3听写4造句
 
     public static TestWords instance;
 
@@ -75,10 +67,10 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
     TextView spellbottom;
 
     public RadioGroup answer;
-    public RadioButton a,b,c,d;
-    ImageView ia,ib,ic,id,ir;
+    public RadioButton a, b, c, d;
+    ImageView ia, ib, ic, id, ir;
     RelativeLayout test_translate;
-    Button goback,goon,read,del,enter,home,close,config;
+    Button goback, goon, read, del, enter, home, close, config;
     LinearLayout spellword;
     TouchpadView touchpadView;
     public EditText spelled;
@@ -100,138 +92,136 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
 
 
     SmallPinBar pinBar;
-    TextView jindu,weiwanchen,yiwanchen,wanchenshu,zongtishu;
+    TextView jindu, weiwanchen, yiwanchen, wanchenshu, zongtishu;
     int tishu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.testwords);
-         Util.curstate="TestWord";
+        Util.curstate = "TestWord";
 
-        instance=this;
+        instance = this;
 
 
-        im=(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 //        Log.i(tag,"TestWords onCreate");
-         db=new DbHelper(this);
+        db = new DbHelper(this);
 //        Log.d(tag,"错词总共有"+db.getCount()+"条");
 
-        data=SelectWord.data;
-        timer=(Chronometer)findViewById(R.id.timer);
-         if (basetime==0){
-             timer.setBase(SystemClock.elapsedRealtime());
-         }else{
-             if(LearnWord.instance.timer!=null){
-                 timer.setBase(LearnWord.instance.timer.getBase());
-             }else{
-                 timer.setBase(basetime);
-             }
+        data = SelectWord.data;
+        timer = (Chronometer) findViewById(R.id.timer);
+        if (basetime == 0) {
+            timer.setBase(SystemClock.elapsedRealtime());
+        } else {
+            if (LearnWord.instance.timer != null) {
+                timer.setBase(LearnWord.instance.timer.getBase());
+            } else {
+                timer.setBase(basetime);
+            }
 
-         }
+        }
 
-        bm=new BackMusic(this);
+        bm = new BackMusic(this);
         timer.start();
-        toptext=(TextView)findViewById(R.id.test_toptext);
-        bottomtext =(TextView)findViewById(R.id.test_bottomtext);
-        answer =(RadioGroup)findViewById(R.id.test_answer);
-        a=(RadioButton)findViewById(R.id.test_answer_a);
-        b=(RadioButton)findViewById(R.id.test_answer_b);
-        c=(RadioButton)findViewById(R.id.test_answer_c);
-        d=(RadioButton)findViewById(R.id.test_answer_d);
-        ia=(ImageView)findViewById(R.id.test_result_a);
-        ib=(ImageView)findViewById(R.id.test_result_b);
-        ic=(ImageView)findViewById(R.id.test_result_c);
-        id=(ImageView)findViewById(R.id.test_result_d);
-        ir=(ImageView)findViewById(R.id.test_result);
-        tip=(TextView)findViewById(R.id.tips);
+        toptext = (TextView) findViewById(R.id.test_toptext);
+        bottomtext = (TextView) findViewById(R.id.test_bottomtext);
+        answer = (RadioGroup) findViewById(R.id.test_answer);
+        a = (RadioButton) findViewById(R.id.test_answer_a);
+        b = (RadioButton) findViewById(R.id.test_answer_b);
+        c = (RadioButton) findViewById(R.id.test_answer_c);
+        d = (RadioButton) findViewById(R.id.test_answer_d);
+        ia = (ImageView) findViewById(R.id.test_result_a);
+        ib = (ImageView) findViewById(R.id.test_result_b);
+        ic = (ImageView) findViewById(R.id.test_result_c);
+        id = (ImageView) findViewById(R.id.test_result_d);
+        ir = (ImageView) findViewById(R.id.test_result);
+        tip = (TextView) findViewById(R.id.tips);
 
-        test_translate=(RelativeLayout)findViewById(R.id.test_translate);
-        goback=(Button)findViewById(R.id.gobacklearn);
-        goon=(Button)findViewById(R.id.goontest);
+        test_translate = (RelativeLayout) findViewById(R.id.test_translate);
+        goback = (Button) findViewById(R.id.gobacklearn);
+        goon = (Button) findViewById(R.id.goontest);
         //拼写
-        spellword=(LinearLayout)findViewById(R.id.spellword);
-        read=(Button)findViewById(R.id.spell_read);
-        spelltop=(TextView)findViewById(R.id.spell_name);
-        spellbottom=(TextView)findViewById(R.id.spell_exampl);
-        touchpadView=(TouchpadView)findViewById(R.id.spell_touchpad);
+        spellword = (LinearLayout) findViewById(R.id.spellword);
+        read = (Button) findViewById(R.id.spell_read);
+        spelltop = (TextView) findViewById(R.id.spell_name);
+        spellbottom = (TextView) findViewById(R.id.spell_exampl);
+        touchpadView = (TouchpadView) findViewById(R.id.spell_touchpad);
         spellword.setVisibility(View.GONE);
 
-        touchpadView.learn=false;
-        del=(Button)findViewById(R.id.spell_del);
-        enter=(Button)findViewById(R.id.spell_enter);
-        spelled=(EditText)findViewById(R.id.spell_edittext);
+        touchpadView.learn = false;
+        del = (Button) findViewById(R.id.spell_del);
+        enter = (Button) findViewById(R.id.spell_enter);
+        spelled = (EditText) findViewById(R.id.spell_edittext);
         read.setOnClickListener(this);
         del.setOnClickListener(this);
         enter.setOnClickListener(this);
 
-        spell_result=(ImageView)findViewById(R.id.result);
+        spell_result = (ImageView) findViewById(R.id.result);
 
 
         goback.setOnClickListener(this);
         goon.setOnClickListener(this);
 
-         home=(Button)findViewById(R.id.home);
-         close=(Button)findViewById(R.id.close);
-         config=(Button)findViewById(R.id.config);
-         home.setOnClickListener(this);
-         close.setOnClickListener(this);
-         config.setOnClickListener(this);
+        home = (Button) findViewById(R.id.home);
+        close = (Button) findViewById(R.id.close);
+        config = (Button) findViewById(R.id.config);
+        home.setOnClickListener(this);
+        close.setOnClickListener(this);
+        config.setOnClickListener(this);
 
-        pinBar=(SmallPinBar)findViewById(R.id.test_pinbar);
-        weiwanchen=(TextView)findViewById(R.id.test_weiwanchen);
-        yiwanchen=(TextView)findViewById(R.id.test_yiwanchen);
-        wanchenshu=(TextView)findViewById(R.id.test_wanchenshu);
-        jindu=(TextView)findViewById(R.id.test_jindu);
-        zongtishu=(TextView)findViewById(R.id.test_zongtishu);
-
-
+        pinBar = (SmallPinBar) findViewById(R.id.test_pinbar);
+        weiwanchen = (TextView) findViewById(R.id.test_weiwanchen);
+        yiwanchen = (TextView) findViewById(R.id.test_yiwanchen);
+        wanchenshu = (TextView) findViewById(R.id.test_wanchenshu);
+        jindu = (TextView) findViewById(R.id.test_jindu);
+        zongtishu = (TextView) findViewById(R.id.test_zongtishu);
 
 
 //        Util.re.setDialog(this);
 //        Util.re.islearning=false;
-        tips=new Tips(this);
+        tips = new Tips(this);
 //        getWord();
 
         timer.setOnChronometerTickListener(this);
 
-         mh=new Handler();
-         testwords=setrandomstep(SelectWord.words);
-        tishu=testwords.size();
-         getWord();
+        mh = new Handler();
+        testwords = setrandomstep(SelectWord.words);
+        tishu = testwords.size();
+        getWord();
 
-         music=(ToggleButton)findViewById(R.id.music);
-         music.setChecked(Config.music);
-         music.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-             @Override
-             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                 Config.music=b;
-             }
-         });
+        music = (ToggleButton) findViewById(R.id.music);
+        music.setChecked(Config.music);
+        music.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Config.music = b;
+            }
+        });
 
         getRootView(this).setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent e) {
 
-                if(second>=60){
-                    timer.setBase(timer.getBase()+(SystemClock.elapsedRealtime()-temptime));
+                if (second >= 60) {
+                    timer.setBase(timer.getBase() + (SystemClock.elapsedRealtime() - temptime));
                     timer.start();
                 }
-                second=0;
+                second = 0;
 
-                switch(e.getAction()){
+                switch (e.getAction()) {
 
                     case MotionEvent.ACTION_DOWN:
-                        current_x=(int)e.getX();
+                        current_x = (int) e.getX();
                         break;
 
                     case MotionEvent.ACTION_UP:
-                        int dex=(int)e.getX()-current_x;
-                        if (Math.abs(dex)<Util.min_shift){
+                        int dex = (int) e.getX() - current_x;
+                        if (Math.abs(dex) < Util.min_shift) {
                             return true;
                         }
-                        if (dex<0){//下一个
-                            if(goon.getVisibility()==View.VISIBLE){
+                        if (dex < 0) {//下一个
+                            if (goon.getVisibility() == View.VISIBLE) {
 //                                Log.e("LearnWord","用户滑屏跳转到下一个单词"+testwords.size());
                                 onClick(goon);
                             }
@@ -246,7 +236,7 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
         spelled.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode==KeyEvent.KEYCODE_ENTER ){
+                if (keyCode == KeyEvent.KEYCODE_ENTER) {
                     onClick(enter);
                     return true;
                 }
@@ -258,132 +248,126 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
 
     int current_x;
 
-    private static View getRootView(Activity context)
-    {
-        return ((ViewGroup)context.findViewById(android.R.id.content)).getChildAt(0);
+    private static View getRootView(Activity context) {
+        return ((ViewGroup) context.findViewById(android.R.id.content)).getChildAt(0);
 
     }
 
     List<TestWordStep> tres;
     List<TestWordStep> temp;
 
-    List<TestWordStep> setrandomstep(List<Word> words){
+    List<TestWordStep> setrandomstep(List<Word> words) {
 
-        tres=new ArrayList();
-        temp=new ArrayList();//临时缓存
+        tres = new ArrayList();
+        temp = new ArrayList();//临时缓存
         TestWordStep tstep;
-        int postion=0;
-        for(Word word:words){
-            if(word.checked){
-                for(int i=1;i<5;i++){
-                    tstep=new TestWordStep();
-                    tstep.postion=postion;
-                    tstep.step=i;
+        int postion = 0;
+        for (Word word : words) {
+            if (word.checked) {
+                for (int i = 1; i < 5; i++) {
+                    tstep = new TestWordStep();
+                    tstep.postion = postion;
+                    tstep.step = i;
 
                     temp.add(tstep);
                 }
-            }else{
-                int a=(int)(Math.random()*4)+1;
-                int b=a;
-                while (b==a){
-                    b=(int)(Math.random()*4)+1;
+            } else {
+                int a = (int) (Math.random() * 4) + 1;
+                int b = a;
+                while (b == a) {
+                    b = (int) (Math.random() * 4) + 1;
                 }
-                tstep=new TestWordStep();
-                tstep.postion=postion;
-                tstep.step=a;
+                tstep = new TestWordStep();
+                tstep.postion = postion;
+                tstep.step = a;
                 temp.add(tstep);
-                tstep=new TestWordStep();
-                tstep.postion=postion;
-                tstep.step=b;
+                tstep = new TestWordStep();
+                tstep.postion = postion;
+                tstep.step = b;
                 temp.add(tstep);
             }
             postion++;
         }
-        while(temp.size()>0){
-            int r=(int)(Math.random()*temp.size());
-            tstep=temp.get(r);
+        while (temp.size() > 0) {
+            int r = (int) (Math.random() * temp.size());
+            tstep = temp.get(r);
             tres.add(tstep);
             temp.remove(r);
         }
 
         //防止step3 随机出现在第一步,造成软键盘显示不良
 
-        TestWordStep t=tres.get(0);
-        if(t.step==3&&tres.size()>1){
-            int i=1;
+        TestWordStep t = tres.get(0);
+        if (t.step == 3 && tres.size() > 1) {
+            int i = 1;
             TestWordStep t2;
-            while((t2=tres.get(i)).step==3){
+            while ((t2 = tres.get(i)).step == 3) {
                 i++;
             }
             //交换tres 0 i
-            tres.set(0,t2);
-            tres.set(i,t);
+            tres.set(0, t2);
+            tres.set(i, t);
 //            Log.d(tag,"防止step3 随机出现在第一步,造成软键盘显示不良");
 //            Log.d(tag,"0与"+i+"进行交换");
         }
 
 
-        return  tres;
+        return tres;
     }
 
 
-
-
-    int deadline=0;
-
-
-
+    public int deadline = 0;
 
 
     @Override
     public void onChronometerTick(Chronometer chronometer) {
-        if(second<60){
+        if (second < 60) {
             second++;
 //            Log.d("LearnWord","second ++: "+second);
-        }else{
+        } else {
             timer.stop();
-            temptime=SystemClock.elapsedRealtime();
+            temptime = SystemClock.elapsedRealtime();
         }
 
-        if(goon.getVisibility()==View.GONE){
-            if(second<60){
+        if (goon.getVisibility() == View.GONE) {
+            if (second < 60) {
 //                Log.i("LearnWord","deadline :"+deadline);
                 deadline++;
 //                Log.d("LearnWord","deadline++ :"+deadline);
             }
 
-            if (deadline>Config.time){
+            if (deadline > Config.time) {
 //                Log.i("LearnWord","over time");
-                deadline=0;
+                deadline = 0;
                 tip.setText("答题超时");
                 bm.play("overtime");
 //                if (step==2||step==4){
 //                    Util.re.forresult=false;
 //                    Util.re.mh.post(Util.re.stoprecord);
 //                }
-                if (step==3){
+                if (step == 3) {
                     spelled.setText("答题超时");
                     onClick(enter);
 
-                }else{
-                    onCheckedChanged(answer,1000);
+                } else {
+                    onCheckedChanged(answer, 1000);
                 }
             }
         }
 
 
-}
+    }
 
     long costtime;
 
-    Runnable musicsucess=new Runnable() {
+    Runnable musicsucess = new Runnable() {
         @Override
         public void run() {
             bm.play("sucessed");
         }
     };
 
-    Runnable musicnewstage=new Runnable() {
+    Runnable musicnewstage = new Runnable() {
         @Override
         public void run() {
             bm.play2("newstage");
@@ -392,24 +376,24 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
 
     public void getWord() {
 
-        int wc=tishu-testwords.size();
-        int precent=wc*100/tishu;
+        int wc = tishu - testwords.size();
+        int precent = wc * 100 / tishu;
         pinBar.setPrecent(precent);
-        weiwanchen.setText("未完成:"+(100-precent)+"%");
-        yiwanchen.setText("已完成:"+precent+"%");
-        wanchenshu.setText("已完成: "+wc+"题");
-        zongtishu.setText("总题数: "+tishu+"题");
-        jindu.setText(precent+"");
+        weiwanchen.setText("未完成:" + (100 - precent) + "%");
+        yiwanchen.setText("已完成:" + precent + "%");
+        wanchenshu.setText("已完成: " + wc + "题");
+        zongtishu.setText("总题数: " + tishu + "题");
+        jindu.setText(precent + "");
 
 
-        if (testwords.size()>0){
-            TestWordStep t=testwords.get(0);
-            word=SelectWord.words.get(t.postion);
-            step=t.step;
+        if (testwords.size() > 0) {
+            TestWordStep t = testwords.get(0);
+            word = SelectWord.words.get(t.postion);
+            step = t.step;
             testwords.remove(0);
 //            Util.re.setWord(word.word);
             updateui();
-        }else{
+        } else {
 //            timer.stop();
 
 //            temptime= timer.getBase();
@@ -418,78 +402,78 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
 //            long temp=costtime-600;
 //            int min=(int)temp/1000/60;
 //            int second=(int)temp/1000%60;
-            String time=timer.getText().toString();
+            String time = timer.getText().toString();
 //            Log.e("LearnWord",time);
-            String[]ts=time.split(":");
-            int min,second;
+            String[] ts = time.split(":");
+            int min, second;
             int temp;
-            if(ts.length==2){
-                min=Integer.parseInt(ts[0]);
-                second=Integer.parseInt(ts[1]);
+            if (ts.length == 2) {
+                min = Integer.parseInt(ts[0]);
+                second = Integer.parseInt(ts[1]);
 
-            }else{
-                min=Integer.parseInt(ts[1]);
-                second=Integer.parseInt(ts[2]);
+            } else {
+                min = Integer.parseInt(ts[1]);
+                second = Integer.parseInt(ts[2]);
             }
-            temp=(min*60+second)*1000;
+            temp = (min * 60 + second) * 1000;
             int rate;
-            if (min<3){
-                rate=5;
-            }else if (min<6){
-                rate=4;
-            }else if (min<8){
-                rate=3;
-            }else if (min<10){
-                rate=2;
-            }else if(min<11){
-                rate=1;
+            if (min < 3) {
+                rate = 5;
+            } else if (min < 6) {
+                rate = 4;
+            } else if (min < 8) {
+                rate = 3;
+            } else if (min < 10) {
+                rate = 2;
+            } else if (min < 11) {
+                rate = 1;
+            } else {
+                rate = 0;
             }
-            else {
-                rate=0;
-            }
+            timer.setOnChronometerTickListener(null);
 
             //闯关失败
-            if (gameover){
+            if (gameover) {
                 tips.rate.setVisibility(View.VISIBLE);
                 tips.resultimg.setImageResource(R.drawable.game_failed);
                 tips.result.setText(getString(R.string.game_failed));
-                tips.spendtime.setText("本关用时："+min+"分"+second+"秒");
+                tips.spendtime.setText("本关用时：" + min + "分" + second + "秒");
                 tips.rate.setRating(0);
                 tips.gobarrier.setVisibility(View.GONE);
                 tips.wrongwords.setVisibility(View.VISIBLE);
-                tips.show((AnimationDrawable)getResources().getDrawable(R.drawable.ku));
+                tips.show((AnimationDrawable) getResources().getDrawable(R.drawable.ku));
 
                 bm.play("failed");
 
-            }
-
-            else if (Util.stage== Util.curstage+1){
-                if(Util.curstage<=36){
-                    Util.curstage=Util.stage;
+            } else if (Util.stage == Util.curstage + 1) {
+                if (Util.curstage <= 36) {
+                    Util.curstage = Util.stage;
 //                    Log.d("LearnWord","curstage is"+Util.curstage);
                 }
+                if (Util.stage % 6 != 0) {
+                    bm.play("chuanguanchengong");
+                }
 
-                bm.play("chuanguanchengong");
-                mh.postDelayed(musicsucess,2000);
+                mh.postDelayed(musicsucess, 2000);
 
-                Intent i=new Intent();
+                Intent i = new Intent();
                 i.setAction("UPDATE_LearnWord_Widget");
                 Entrance.writebardata();
                 sendBroadcast(i);
 
 
-                Util.spendtime[Util.stage]=(int)(temp/1000);
+                Util.spendtime[Util.stage] = (int) (temp / 1000);
 
                 tips.gobarrier.setVisibility(View.VISIBLE);
                 tips.wrongwords.setVisibility(View.GONE);
-                if (Util.stage%6==0){//成就
+                if (Util.stage % 6 == 0) {//成就
 //                    tips.resultimg.setImageResource(R.drawable.game_sucess);
-                    String t=Util.getChengHao(this,Util.stage/6);
+                    String t = Util.getChengHao(this, Util.stage / 6);
 
-                    bm.play2("chenghao"+Util.stage/6);
+                    bm.play2("chenghao" + Util.stage / 6);
 //                    Intent s=new Intent(this,ChengHao.class);
 //                    startActivity(s);
-                    ChengHao chengHao=new ChengHao(this);
+                    ChengHao chengHao = new ChengHao(this);
 
 
 //                    if (Util.stage/6==1){
@@ -512,57 +496,53 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
 //                    tips.title.setText("奖励称号");
 //                    tips.show((AnimationDrawable)getResources().getDrawable(R.drawable.xiao));
                     bm.play("getrate");
-                }else//解锁新关卡
+                } else//解锁新关卡
                 {
                     tips.gobarrier.setVisibility(View.VISIBLE);
                     tips.wrongwords.setVisibility(View.GONE);
                     tips.resultimg.setImageResource(R.drawable.game_sucess);
                     tips.result.setText(getString(R.string.game_sucess));
-                    tips.spendtime.setText("本关用时："+min+"分"+second+"秒");
+                    tips.spendtime.setText("本关用时：" + min + "分" + second + "秒");
                     tips.rate.setRating(rate);
-                    tips.show((AnimationDrawable)getResources().getDrawable(R.drawable.xiao));
-                    if(Util.spendtime[Util.stage]>(int)(temp/1000)|| Util.spendtime[Util.stage]==0){
-                        Util.spendtime[Util.stage]=(int)(temp/1000);
+                    tips.show((AnimationDrawable) getResources().getDrawable(R.drawable.xiao));
+                    if (Util.spendtime[Util.stage] > (int) (temp / 1000) || Util.spendtime[Util.stage] == 0) {
+                        Util.spendtime[Util.stage] = (int) (temp / 1000);
                     }
 
-                    mh.postDelayed(musicnewstage,2000);
+                    mh.postDelayed(musicnewstage, 2000);
                 }
 
 
-
-            }else{
+            } else {
                 bm.play("闯关成功");
-                if(Util.spendtime[Util.stage]>(int)(temp/1000)|| Util.spendtime[Util.stage]==0){
-                    Util.spendtime[Util.stage]=(int)(temp/1000);
+                if (Util.spendtime[Util.stage] > (int) (temp / 1000) || Util.spendtime[Util.stage] == 0) {
+                    Util.spendtime[Util.stage] = (int) (temp / 1000);
                 }
                 bm.play("sucessed");
                 tips.resultimg.setImageResource(R.drawable.game_sucess);
                 tips.result.setText(getString(R.string.game_sucess));
-                tips.spendtime.setText("本关用时："+min+"分"+second+"秒");
+                tips.spendtime.setText("本关用时：" + min + "分" + second + "秒");
                 tips.rate.setVisibility(View.VISIBLE);
                 tips.rate.setRating(rate);
-                tips.show((AnimationDrawable)getResources().getDrawable(R.drawable.xiao));
+                tips.show((AnimationDrawable) getResources().getDrawable(R.drawable.xiao));
 
             }
-            if(!gameover){
-                if(Util.spendtime[Util.stage]>(int)(temp/1000)|| Util.spendtime[Util.stage]==0){
+            if (!gameover) {
+                if (Util.spendtime[Util.stage] > (int) (temp / 1000) || Util.spendtime[Util.stage] == 0) {
 //                    Log.i(tag,"send level info :level "+Util.stage+" time:"+(int)temp/1000);
-                    List<NameValuePair>pairs=new ArrayList<NameValuePair>();
-                    NameValuePair pair=new BasicNameValuePair("level",Util.stage+"");
+                    List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+                    NameValuePair pair = new BasicNameValuePair("level", Util.stage + "");
                     pairs.add(pair);
-                    pair=new BasicNameValuePair("time",(int)temp/1000+"");
+                    pair = new BasicNameValuePair("time", (int) temp / 1000 + "");
                     pairs.add(pair);
-                    Util.httpPost(Util.sendstage,pairs);
+                    Util.httpPost(Util.sendstage, pairs);
                 }
             }
         }
     }
 
 
-
-
-
-    void updateui(){
+    void updateui() {
 
         test_translate.setVisibility(View.GONE);
         goon.setVisibility(View.GONE);
@@ -572,7 +552,7 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
         id.setVisibility(View.GONE);
         ir.setVisibility(View.GONE);
 
-        boolean clickable=true;
+        boolean clickable = true;
 //        if(step<5){
 //            clickable=true;
 //        }else{
@@ -596,18 +576,18 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
 
 
 //        System.out.println("Step is:"+step);
-        deadline=0;
+        deadline = 0;
 //        if(step==2||step==4){
 //            tip.setText("请使用语音作答");
 //        }else{
-            tip.setText("");
+        tip.setText("");
 //        }
 
         im.hideSoftInputFromWindow(spelled.getWindowToken(), 0);
 
 //        step=3;
 
-        switch (step){
+        switch (step) {
             case 1:
                 test_translate.setVisibility(View.VISIBLE);
                 toptext.setText(word.word);
@@ -644,12 +624,12 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
             case 4:
                 test_translate.setVisibility(View.VISIBLE);
                 bottomtext.setVisibility(View.VISIBLE);
-                String s=word.exampen;
-                String m=word.word.replaceAll("[a-zA-Z]","_");
+                String s = word.exampen;
+                String m = word.word.replaceAll("[a-zA-Z]", "_");
 //                Log.d("LearnWord",word.toString());
-                s=s.replaceAll(word.word,m);
-                String tmp=word.word.substring(0,1).toUpperCase()+word.word.substring(1);
-                s=s.replaceAll(tmp,m);
+                s = s.replaceAll(word.word, m);
+                String tmp = word.word.substring(0, 1).toUpperCase() + word.word.substring(1);
+                s = s.replaceAll(tmp, m);
                 toptext.setText(s);
                 bottomtext.setText(word.exampcn);
                 setRandomEn();
@@ -663,9 +643,9 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
     @Override
     protected void onResume() {
         super.onResume();
-        bm.playflag=true;
-        if(temptime!=0){
-            timer.setBase(timer.getBase()+(SystemClock.elapsedRealtime()-temptime));
+        bm.playflag = true;
+        if (temptime != 0) {
+            timer.setBase(timer.getBase() + (SystemClock.elapsedRealtime() - temptime));
             timer.start();
         }
         timer.setOnChronometerTickListener(this);
@@ -674,10 +654,10 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
 //        }
 //
         music.setChecked(Config.music);
-        Resources res=getResources();
-        Configuration c=res.getConfiguration();
-        c.fontScale=1;
-        res.updateConfiguration(c,res.getDisplayMetrics());
+        Resources res = getResources();
+        Configuration c = res.getConfiguration();
+        c.fontScale = 1;
+        res.updateConfiguration(c, res.getDisplayMetrics());
 
 
 //        if(tempscond!=0&&goon.VISIBLE==View.GONE){
@@ -709,26 +689,26 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
 
     }
 
-    public void updatespellui(){
-        if(step!=3){
+    public void updatespellui() {
+        if (step != 3) {
             return;
         }
 
 
-
-        if (Config.type){
+        if (Config.type) {
             spelled.clearFocus();
             spelled.setEnabled(false);
             del.setVisibility(View.VISIBLE);
             touchpadView.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             spelled.setEnabled(true);
             spelled.requestFocus();
-            im.showSoftInput(spelled,InputMethodManager.SHOW_FORCED);
+            spelled.setSelection(spelled.getText().toString().length());
+            im.showSoftInput(spelled, InputMethodManager.SHOW_FORCED);
             del.setVisibility(View.GONE);
             touchpadView.setVisibility(View.GONE);
         }
-        if(!enter.isEnabled())
+        if (!enter.isEnabled())
             spelled.setEnabled(false);
 
     }
@@ -738,117 +718,116 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
     protected void onPause() {
 //        Log.i("LearnWord","TestWord onPause");
         super.onPause();
-        bm.playflag=false;
-        if(step==3){
+        bm.playflag = false;
+        if (step == 3) {
             spelled.clearFocus();
-            im.hideSoftInputFromWindow(spelled.getWindowToken(),0);
-            if(touchpadView!=null&&Config.type){
-                touchpadView.mh.postDelayed(touchpadView.rr,100);
+            im.hideSoftInputFromWindow(spelled.getWindowToken(), 0);
+            if (touchpadView != null && Config.type) {
+                touchpadView.mh.postDelayed(touchpadView.rr, 100);
             }
         }
         timer.stop();
-        temptime=SystemClock.elapsedRealtime();
+        temptime = SystemClock.elapsedRealtime();
         timer.setOnChronometerTickListener(this);
     }
 
-    int tempscond=0;
+    int tempscond = 0;
 
     @Override
     protected void onStop() {
         super.onStop();
 //        Log.i("LearnWord","TestWord onStop");
-        String time=timer.getText().toString();
-        String s[]=time.split(":");
-        tempscond=Integer.parseInt(s[0])*60+Integer.parseInt(s[1]);
+        String time = timer.getText().toString();
+        String s[] = time.split(":");
+        tempscond = Integer.parseInt(s[0]) * 60 + Integer.parseInt(s[1]);
     }
 
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, int i) {
 
-        if (radioGroup==answer){
+        if (radioGroup == answer) {
             radioGroup.setOnCheckedChangeListener(null);
-            boolean t=false;
-            switch (i){
+            boolean t = false;
+            switch (i) {
                 case R.id.test_answer_a:
-                    t=match(a.getText().toString());
-                    if (!t){
+                    t = match(a.getText().toString());
+                    if (!t) {
                         ia.setVisibility(View.VISIBLE);
                         ia.setImageResource(R.drawable.answer_wrong);
                     }
                     break;
 
                 case R.id.test_answer_b:
-                    t=match(b.getText().toString());
-                    if (!t){
+                    t = match(b.getText().toString());
+                    if (!t) {
                         ib.setVisibility(View.VISIBLE);
                         ib.setImageResource(R.drawable.answer_wrong);
                     }
                     break;
 
                 case R.id.test_answer_c:
-                    t=match(c.getText().toString());
-                    if (!t){
+                    t = match(c.getText().toString());
+                    if (!t) {
                         ic.setVisibility(View.VISIBLE);
                         ic.setImageResource(R.drawable.answer_wrong);
                     }
                     break;
 
                 case R.id.test_answer_d:
-                    t=match(d.getText().toString());
-                    if (!t){
+                    t = match(d.getText().toString());
+                    if (!t) {
                         id.setVisibility(View.VISIBLE);
                         id.setImageResource(R.drawable.answer_wrong);
                     }
                     break;
 
                 case 1001://答对
-                    t=true;
+                    t = true;
                     break;
 
                 case 1000://答错
-                    t=false;
+                    t = false;
                     ir.setVisibility(View.VISIBLE);
 
 
                     break;
 
             }
-            if (match(a.getText().toString())){
+            if (match(a.getText().toString())) {
                 ia.setVisibility(View.VISIBLE);
                 ia.setImageResource(R.drawable.answer_right);
 //                if (t){
 //                    a.setChecked(true);
 //                }
 
-            }else if (match(b.getText().toString())){
+            } else if (match(b.getText().toString())) {
                 ib.setVisibility(View.VISIBLE);
                 ib.setImageResource(R.drawable.answer_right);
 //                if (t){
 //                    b.setChecked(true);
 //                }
-            }else if (match(c.getText().toString())){
+            } else if (match(c.getText().toString())) {
                 ic.setVisibility(View.VISIBLE);
                 ic.setImageResource(R.drawable.answer_right);
 //                if (t){
 //                    c.setChecked(true);
 //                }
-            }else if (match(d.getText().toString())){
+            } else if (match(d.getText().toString())) {
                 id.setVisibility(View.VISIBLE);
                 id.setImageResource(R.drawable.answer_right);
 //                if (t){
 //                    d.setChecked(true);
 //                }
             }
-            if (!t){
+            if (!t) {
                 bm.play("wrong");
-                gameover=true;
+                gameover = true;
                 goback.setVisibility(View.VISIBLE);
                 db.into(word);
 
-            }else{
+            } else {
                 bm.play("right");
             }
-
 
 
             a.setClickable(false);
@@ -856,51 +835,51 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
             c.setClickable(false);
             d.setClickable(false);
             goon.setVisibility(View.VISIBLE);
-            if(testwords.size()==0){
+            if (testwords.size() == 0) {
                 timer.stop();
-                temptime=timer.getBase();
+                temptime = timer.getBase();
                 timer.setOnChronometerTickListener(null);
-                costtime=SystemClock.elapsedRealtime()-temptime;
+                costtime = SystemClock.elapsedRealtime() - temptime;
             }
-            if(t){
+            if (t) {
 //                mh.postDelayed(next,1500);
-                mh.postDelayed(next,1500);
+                mh.post(next);
             }
 
         }
     }
 
-    int second=0;
+    int second = 0;
     long temptime;
 
 
     @Override
     public void onClick(View view) {
 
-        if(second>=60){
-            timer.setBase(timer.getBase()+(SystemClock.elapsedRealtime()-temptime));
+        if (second >= 60) {
+            timer.setBase(timer.getBase() + (SystemClock.elapsedRealtime() - temptime));
             timer.start();
         }
 //        Log.i("","second is "+second);
-        second=0;
+        second = 0;
 
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.goontest:
 //                if(goon.getVisibility()==View.GONE){
 //                    return;
 //                }
-                synchronized (this){
+                synchronized (this) {
                     goon.setVisibility(View.GONE);
                     mh.removeCallbacks(next);
 //                    Log.e("LearnWord","用户跳转到下一个单词"+testwords.size());
                     getWord();
-                };
-
+                }
+                ;
 
 
                 break;
 
-            case  R.id.spell_read:
+            case R.id.spell_read:
                 word.readword();
                 break;
 
@@ -911,30 +890,33 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
 //                }else{
 //                    temp=spelled.getText().toString();
 //                }
-                temp=spelled.getText().toString();
+                temp = spelled.getText().toString();
 
-                if (temp.length()<1){return;}
+                if (temp.length() < 1) {
+                    return;
+                }
                 enter.setEnabled(false);
                 del.setEnabled(false);
-                if (temp.toLowerCase().equals(word.word.toLowerCase())){
+                if (temp.toLowerCase().equals(word.word.toLowerCase())) {
 //                    Toast.makeText(this, "拼写正确", Toast.LENGTH_SHORT).show();
                     bm.play("right");
                     spell_result.setVisibility(View.VISIBLE);
                     spell_result.setImageResource(R.drawable.answer_right);
-                    mh.postDelayed(next,1500);
-                }else{
+//                    mh.postDelayed(next,1500);
+                    mh.post(next);
+                } else {
 //                    Toast.makeText(this,"拼写错误",Toast.LENGTH_SHORT).show();
                     spell_result.setImageResource(R.drawable.answer_wrong);
                     spell_result.setVisibility(View.VISIBLE);
-                    gameover=true;
+                    gameover = true;
                     db.into(word);
                     goback.setVisibility(View.VISIBLE);
                     bm.play("wrong");
                 }
-                if(testwords.size()==0){
+                if (testwords.size() == 0) {
                     timer.stop();
-                    temptime=timer.getBase();
-                    costtime=SystemClock.elapsedRealtime()-temptime;
+                    temptime = timer.getBase();
+                    costtime = SystemClock.elapsedRealtime() - temptime;
                 }
 
 
@@ -954,25 +936,24 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
 
             case R.id.spell_del:
 
-                String s=spelled.getText().toString();
-                if (s.length()>0){
+                String s = spelled.getText().toString();
+                if (s.length() > 0) {
                     spelled.setText(s.substring(0, s.length() - 1));
                 }
                 break;
 
             case R.id.gobacklearn:
-                LearnErrorWord.words=new ArrayList<Word>();
+                LearnErrorWord.words = new ArrayList<Word>();
                 LearnErrorWord.words.add(word);
 
 //                mh.postDelayed(new Runnable() {
 //                    @Override
 //                    public void run() {
-                        Intent i=new Intent(TestWords.this,LearnErrorWord.class);
-                        i.putExtra("isfortest",true);
-                        startActivity(i);
+                Intent i = new Intent(TestWords.this, LearnErrorWord.class);
+                i.putExtra("isfortest", true);
+                startActivity(i);
 //                    }
 //                },10000);
-
 
 
 //                finish();
@@ -985,7 +966,7 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
                 break;
 
             case R.id.config:
-                Intent j=new Intent(TestWords.this,Config.class);
+                Intent j = new Intent(TestWords.this, Config.class);
                 startActivity(j);
 
                 break;
@@ -996,24 +977,24 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
         }
     }
 
-    boolean match(String s){
-        if (s.equals(word.word)||s.equals(word.expl)){
+    boolean match(String s) {
+        if (s.equals(word.word) || s.equals(word.expl)) {
             return true;
         }
         return false;
     }
 
-    Word getrword(){//获取随机单词
+    Word getrword() {//获取随机单词
         Word tword;
-        int random=word.index;
-        while (random==word.index){
-            random=(int)(Math.random()*360+1);
+        int random = word.index;
+        while (random == word.index) {
+            random = (int) (Math.random() * 360 + 1);
         }
-        tword=data.getword(random);
-        if (tword.word!=null&&tword.expl!=null){
+        tword = data.getword(random);
+        if (tword.word != null && tword.expl != null) {
 //            Log.i(tag,tword.toString());
             return tword;
-        }else {
+        } else {
 //            Log.e(tag,word.toString());
 
             return getrword();
@@ -1022,98 +1003,95 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
 
     }
 
-    void setRandomChn(){
-        int x=(int)(Math.random()*4+1);
-        setRbtn(x,word.expl);
+    void setRandomChn() {
+        int x = (int) (Math.random() * 4 + 1);
+        setRbtn(x, word.expl);
         Word tw;
-        int tmp[]=new int[3];
-        int tmpindex=0;
-        for (int i=1;i<5;i++){
-            if (i!=x){
+        int tmp[] = new int[3];
+        int tmpindex = 0;
+        for (int i = 1; i < 5; i++) {
+            if (i != x) {
 
-                tw=getrword();
-                while (tw.index==tmp[0]||tw.index==tmp[1]||tw.index==tmp[2]){
-                    tw=getrword();
+                tw = getrword();
+                while (tw.index == tmp[0] || tw.index == tmp[1] || tw.index == tmp[2]) {
+                    tw = getrword();
                 }
-                tmp[tmpindex]=tw.index;
+                tmp[tmpindex] = tw.index;
                 tmpindex++;
-                setRbtn(i,tw.expl);
+                setRbtn(i, tw.expl);
             }
         }
     }
 
-    void setRandomEn(){
-        int x=(int)(Math.random()*4+1);
-        setRbtn(x,word.word);
+    void setRandomEn() {
+        int x = (int) (Math.random() * 4 + 1);
+        setRbtn(x, word.word);
         Word tw;
-        int tmp[]=new int[3];
-        int tmpindex=0;
-        for (int i=1;i<5;i++){
-            if (i!=x){
+        int tmp[] = new int[3];
+        int tmpindex = 0;
+        for (int i = 1; i < 5; i++) {
+            if (i != x) {
 
-                tw=getrword();
-                while (tw.index==tmp[0]||tw.index==tmp[1]||tw.index==tmp[2]){
-                    tw=getrword();
+                tw = getrword();
+                while (tw.index == tmp[0] || tw.index == tmp[1] || tw.index == tmp[2]) {
+                    tw = getrword();
                 }
-                tmp[tmpindex]=tw.index;
+                tmp[tmpindex] = tw.index;
                 tmpindex++;
-                setRbtn(i,tw.word);
+                setRbtn(i, tw.word);
             }
         }
     }
 
-    void setRbtn(int xx,String s){
-       switch (xx){
-           case 1:
-               a.setText(s);
-               break;
+    void setRbtn(int xx, String s) {
+        switch (xx) {
+            case 1:
+                a.setText(s);
+                break;
 
-           case 2:
-               b.setText(s);
-               break;
+            case 2:
+                b.setText(s);
+                break;
 
-           case 3:
-               c.setText(s);
-               break;
+            case 3:
+                c.setText(s);
+                break;
 
-           case 4:
-               d.setText(s);
-               break;
+            case 4:
+                d.setText(s);
+                break;
 
-       }
+        }
     }
 
 
+    protected void toast(final String str) {
 
-    protected void toast(final String str){
 
-
-        TextView t=new TextView(this);
+        TextView t = new TextView(this);
         t.setTextSize(20);
         t.setText(str);
         t.setGravity(Gravity.CENTER);
         t.setBackgroundResource(R.drawable.toastback);
-        Toast tt=new Toast(this);
+        Toast tt = new Toast(this);
         tt.setView(t);
-        tt.setGravity(Gravity.CENTER,0,0);
+        tt.setGravity(Gravity.CENTER, 0, 0);
         tt.show();
     }
-
-
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
 //        Log.i("LearnWord","TestWord onDestroy");
-        try{
+        try {
             db.close();
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
-        basetime=timer.getBase();
-        if(bm!=null){
+        basetime = timer.getBase();
+        if (bm != null) {
             bm.stop();
         }
 
@@ -1124,22 +1102,22 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
 //        }
         timer.setOnChronometerTickListener(null);
 
-        List<NameValuePair>pairs=new ArrayList<NameValuePair>();
+        List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 //        long temp= SystemClock.elapsedRealtime()-timer.getBase();
 //        if(testwords.size()==0){
 //            int second=(int)costtime/1000;
 //        }else{
 //            int second=(int)temp/1000;
 //        }
-        String time=timer.getText().toString();
-        String s[]=time.split(":");
-        int second=Integer.parseInt(s[0])*60+Integer.parseInt(s[1]);
+        String time = timer.getText().toString();
+        String s[] = time.split(":");
+        int second = Integer.parseInt(s[0]) * 60 + Integer.parseInt(s[1]);
 
 
 //        Log.d(tag,"LearnWord addtime:"+second);
-        NameValuePair pair=new BasicNameValuePair("time",second+"");
+        NameValuePair pair = new BasicNameValuePair("time", second + "");
         pairs.add(pair);
-        Util.httpPost(Util.sendtime,pairs);
+        Util.httpPost(Util.sendtime, pairs);
         Entrance.writebardata();
 
         mh.removeCallbacks(musicnewstage);
@@ -1148,11 +1126,10 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
     }
 
 
-
-    Runnable next=new Runnable() {
+    Runnable next = new Runnable() {
         @Override
         public void run() {
-            if(goon.getVisibility()==View.VISIBLE){
+            if (goon.getVisibility() == View.VISIBLE) {
 //                Log.e("LearnWord","自动跳转到下一个单词"+testwords.size());
                 goon.setVisibility(View.GONE);
                 onClick(goon);
@@ -1162,13 +1139,12 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
         }
     };
 
-    class TestWordStep{
+    class TestWordStep {
 
         int postion;
         int step;
 
     }
-
 
 
 }

@@ -15,7 +15,7 @@ import android.view.View;
 public class PinBar extends View {
 
 
-    public int precent=75;
+    public int precent = 75;
     public int angle;
 
     public PinBar(Context context) {
@@ -36,24 +36,25 @@ public class PinBar extends View {
     }
 
 
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 //        canvas.drawColor(Color.WHITE);
-        Paint paint=new Paint();
+        Paint paint = new Paint();
         paint.setAntiAlias(true);
-        int r=27;int g=207;int b=221;
-        paint.setColor(Color.rgb(r,g,b));
+        int r = 27;
+        int g = 207;
+        int b = 221;
+        paint.setColor(Color.rgb(r, g, b));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(25);
 
-        angle=360*(precent)/100;
-        canvas.drawArc(new RectF(25, 25, 215, 215), -90,angle+1, false, paint);
+        angle = 360 * (precent) / 100;
+        canvas.drawArc(new RectF(25, 25, 215, 215), -90, angle + 1, false, paint);
 
-        paint.setColor(Color.rgb(255,180,0));
+        paint.setColor(Color.rgb(255, 180, 0));
 
-        canvas.drawArc(new RectF(25,25, 215, 215),angle-90,360-angle , false, paint);
+        canvas.drawArc(new RectF(25, 25, 215, 215), angle - 90, 360 - angle, false, paint);
 
     }
 }

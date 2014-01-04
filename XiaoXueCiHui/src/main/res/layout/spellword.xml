@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/spellword">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:maxWidth="660dp"
+                android:textSize="50sp"
+                android:textColor="#5ad700"
+                android:text="Word"
+                android:id="@+id/spell_name"
+                android:layout_marginRight="40dp" />
+
+            <Button
+                style="@style/DefBtn"
+                android:id="@+id/spell_read"
+                android:layout_marginRight="10dp"
+                android:textSize="22sp"
+                android:background="@drawable/readword" />
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/word_exampl"
+            android:id="@+id/spell_exampl"
+            android:textSize="22sp" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+
+            <EditText
+                android:layout_width="400dp"
+                android:layout_height="42dp"
+                android:id="@+id/spell_edittext"
+                android:singleLine="true"
+                android:paddingLeft="20dp"
+                android:maxLength="31"
+                android:inputType="text"
+                android:digits="qwertyuiopasdfghjklzxcvbnm"
+                android:background="@drawable/edittextbg" />
+
+
+            <Button
+                style="@style/TBtn"
+                android:id="@+id/spell_del"
+                android:textSize="22sp"
+                android:text="撤销"
+                android:layout_height="42dp"
+                android:layout_width="150dp"
+                android:layout_marginBottom="5dp" />
+
+            <Button
+                style="@style/TBtn"
+                android:textSize="22sp"
+                android:layout_height="42dp"
+                android:id="@+id/spell_enter"
+                android:text="确定"
+                android:layout_width="150dp" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="#acacac"
+            android:id="@+id/spell_tips"
+            android:layout_height="wrap_content"
+            android:text="请使用本关学习的单词" />
+
+
+        <!--<View android:layout_width="400dp" android:layout_height="2dp" android:background="@color/gblue"/>-->
+
+
+        <com.readboy.learnwordx.view.TouchpadView
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/touchpad"
+            android:id="@+id/spell_touchpad"
+            android:layout_marginTop="10dp"
+            android:layout_margin="5dp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/result"
+        android:src="@drawable/answer_wrong"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="100dp"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

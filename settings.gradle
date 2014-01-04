@@ -1,1 +1,1 @@
-include ':ChuZhongCiHui'
+include ':ChuZhongCihui', ':XiaoXueCiHui'

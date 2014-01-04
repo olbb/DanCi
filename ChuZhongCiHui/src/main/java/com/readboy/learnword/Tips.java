@@ -21,32 +21,31 @@ import com.readboy.learnword.util.Util;
 public class Tips implements View.OnClickListener {
 
 
-
     Context context;
     Dialog dialog;
-    public Button exit,gobarrier;
+    public Button exit, gobarrier;
     public Button wrongwords;
-    public TextView title,result,spendtime;
+    public TextView title, result, spendtime;
     public ImageView resultimg;
     public RatingBar rate;
     AnimationDrawable ad;
 
 
-    public Tips(Context c){
+    public Tips(Context c) {
 
-        context=c;
-        dialog=new Dialog(context,R.style.dialog);
+        context = c;
+        dialog = new Dialog(context, R.style.dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.tips);
 
-        exit=(Button)dialog.findViewById(R.id.tipsexit);
-        gobarrier=(Button)dialog.findViewById(R.id.tips_goon);
-        title=(TextView)dialog.findViewById(R.id.tipstitle);
-        result=(TextView)dialog.findViewById(R.id.gamerestext);
-        spendtime=(TextView)dialog.findViewById(R.id.gamespendtime);
-        resultimg=(ImageView)dialog.findViewById(R.id.gameresult);
-        rate=(RatingBar)dialog.findViewById(R.id.tips_rate);
-        wrongwords=(Button)dialog.findViewById(R.id.tips_viewwrongwords);
+        exit = (Button) dialog.findViewById(R.id.tipsexit);
+        gobarrier = (Button) dialog.findViewById(R.id.tips_goon);
+        title = (TextView) dialog.findViewById(R.id.tipstitle);
+        result = (TextView) dialog.findViewById(R.id.gamerestext);
+        spendtime = (TextView) dialog.findViewById(R.id.gamespendtime);
+        resultimg = (ImageView) dialog.findViewById(R.id.gameresult);
+        rate = (RatingBar) dialog.findViewById(R.id.tips_rate);
+        wrongwords = (Button) dialog.findViewById(R.id.tips_viewwrongwords);
 
         exit.setOnClickListener(this);
         gobarrier.setOnClickListener(this);
@@ -55,14 +54,14 @@ public class Tips implements View.OnClickListener {
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialogInterface) {
-                try{
+                try {
                     TestWords.instance.finish();
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
-                try{
-                   SelectWord.instance.finish();
-                }catch (Exception e){
+                try {
+                    SelectWord.instance.finish();
+                } catch (Exception e) {
 
                 }
                 ad.stop();
@@ -73,41 +72,39 @@ public class Tips implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.tipsexit:
                 dialog.cancel();
-                Util.stage=-1;
+                Util.stage = -1;
                 TestWords.instance.finish();
                 break;
 
             case R.id.tips_goon:
                 dialog.cancel();
                 Util.finish();
-                if(Util.stage<36){
+                if (Util.stage < 36) {
                     Util.stage++;
 //                    Barrier.instance.barad.notifyDataSetChanged();
 //                SelectWord.instance.update();
 //                SelectWord.instance.sd.notifyDataSetChanged();
-                    Intent z=new Intent(Barrier.instance,SelectWord.class);
-                    z.putExtra("stage",Util.stage);
+                    Intent z = new Intent(Barrier.instance, SelectWord.class);
+                    z.putExtra("stage", Util.stage);
                     Barrier.instance.startActivity(z);
-                }else {
-                    Toast.makeText(context,"恭喜你已经完成了全部关卡!",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "恭喜你已经完成了全部关卡!", Toast.LENGTH_SHORT).show();
 
                 }
-
-
 
 
                 break;
 
             case R.id.tips_viewwrongwords:
-                Intent i=new Intent(context,ErrorWord.class);
+                Intent i = new Intent(context, ErrorWord.class);
                 context.startActivity(i);
                 try {
                     TestWords.instance.finish();
 
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
 //                try{
@@ -115,25 +112,23 @@ public class Tips implements View.OnClickListener {
 //                }catch (Exception e){
 //
 //                }
-                try{
+                try {
                     LearnWord.instance.finish();
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
-                Util.stage++;
+//                Util.stage++;
                 break;
         }
 
     }
 
-    public void show(AnimationDrawable ad){
+    public void show(AnimationDrawable ad) {
         resultimg.setImageDrawable(ad);
-        this.ad=ad;
+        this.ad = ad;
         ad.start();
         dialog.show();
     }
-
-
 
 
 }

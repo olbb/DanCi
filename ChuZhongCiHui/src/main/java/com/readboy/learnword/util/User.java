@@ -1,6 +1,5 @@
 package com.readboy.learnword.util;
 
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
 /**
@@ -8,7 +7,7 @@ import android.graphics.drawable.Drawable;
  */
 public class User {
 
-    public int uid=0;
+    public int uid = 0;
 
 
     public String imagePath;
@@ -36,8 +35,8 @@ public class User {
                 '}';
     }
 
-    public void recyle(){
-        if(userimg!=null){
+    public void recyle() {
+        if (userimg != null) {
 //            userimg.recycle();
         }
 

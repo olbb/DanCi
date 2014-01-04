@@ -7,17 +7,10 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Color;
-import android.os.Handler;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 
-import com.readboy.learnword.R;
 import com.readboy.learnword.util.Util;
 
 /**
@@ -38,8 +31,8 @@ public class MWidget extends AppWidgetProvider {
 
 
 //        Log.d("LearnWord","LearnWord Widget update");
-        if(rv==null){
-            rv=new RemoteViews(context.getPackageName(),R.layout.cihuiwidget);
+        if (rv == null) {
+            rv = new RemoteViews(context.getPackageName(), R.layout.cihuiwidget);
         }
 
 
@@ -54,13 +47,13 @@ public class MWidget extends AppWidgetProvider {
 //            PendingIntent localPendingIntent1 = PendingIntent.getActivity(context, 0, localIntent2, 0);
 //            this.rv.setOnClickPendingIntent(R.id.widget_goto, localPendingIntent1);
 
-        rv=new RemoteViews(context.getPackageName(),R.layout.cihuiwidget);
-        Intent i=new Intent(context,Entrance.class);
-        PendingIntent localPending=PendingIntent.getActivity(context,0,i,0);
-        rv.setOnClickPendingIntent(R.id.widget_goto,localPending);
+        rv = new RemoteViews(context.getPackageName(), R.layout.cihuiwidget);
+        Intent i = new Intent(context, Entrance.class);
+        PendingIntent localPending = PendingIntent.getActivity(context, 0, i, 0);
+        rv.setOnClickPendingIntent(R.id.widget_goto, localPending);
 
 
-        appWidgetManager.updateAppWidget(appWidgetIds,rv);
+        appWidgetManager.updateAppWidget(appWidgetIds, rv);
 
 
     }
@@ -72,34 +65,34 @@ public class MWidget extends AppWidgetProvider {
 
 //        Log.d("LearnWord","LearnWord Widget onReceive"+intent.getAction());
 
-          //        if(sh==null){
+        //        if(sh==null){
 //            sh=context.getSharedPreferences("barrier",Context.MODE_PRIVATE);
 //        }
 //        stage=sh.getInt("curstage", 1);
 //        if(rv==null){
-            rv=new RemoteViews(context.getPackageName(),R.layout.cihuiwidget);
+        rv = new RemoteViews(context.getPackageName(), R.layout.cihuiwidget);
 //        }
 
 //        if(stage==0){
-            sh=context.getSharedPreferences("barrier",Context.MODE_PRIVATE);
-            stage=sh.getInt("curstage", 0);
+        sh = context.getSharedPreferences("barrier", Context.MODE_PRIVATE);
+        stage = sh.getInt("curstage", 0);
 //        }
-        if(Util.curstage>stage){
-            stage=Util.curstage;
+        if (Util.curstage > stage) {
+            stage = Util.curstage;
         }
         int paiming;
         String shijian;
-        shijian=sh.getString("zongyongshi","--");
-        paiming=sh.getInt("zongpaiming",0);
+        shijian = sh.getString("zongyongshi", "--");
+        paiming = sh.getInt("zongpaiming", 0);
 
-        rv.setTextViewText(R.id.widget_zongyongshi,shijian);
+        rv.setTextViewText(R.id.widget_zongyongshi, shijian);
 
-        if(paiming==0){
+        if (paiming == 0) {
             rv.setTextViewText(R.id.widget_paiming, "-");
-            rv.setTextViewText(R.id.widget_ming,"");
-        }else{
+            rv.setTextViewText(R.id.widget_ming, "");
+        } else {
             rv.setTextViewText(R.id.widget_paiming, paiming + "");
-            rv.setTextViewText(R.id.widget_ming,"名");
+            rv.setTextViewText(R.id.widget_ming, "名");
         }
 
 
@@ -107,47 +100,41 @@ public class MWidget extends AppWidgetProvider {
 //            stage=1;
 //        }
 
-        if(stage>36){
-            stage=36;
+        if (stage > 36) {
+            stage = 36;
         }
-        if(stage<10){
-            rv.setTextViewText(R.id.widget_stage,"0"+stage);
-        }else{
-            rv.setTextViewText(R.id.widget_stage,stage+"");
+        if (stage < 10) {
+            rv.setTextViewText(R.id.widget_stage, "0" + stage);
+        } else {
+            rv.setTextViewText(R.id.widget_stage, stage + "");
         }
-        rv.setTextViewText(R.id.widget_yiwanchen,stage*100/36+"%");
-        rv.setTextViewText(R.id.widget_weiwanchen,(100-stage*100/36)+"%" );
-
-
-       
+        rv.setTextViewText(R.id.widget_yiwanchen, stage * 100 / 36 + "%");
+        rv.setTextViewText(R.id.widget_weiwanchen, (100 - stage * 100 / 36) + "%");
 
 
 //        Log.i("LearnWord",stage * 100 / 36+" ____");
         rv.setInt(R.id.widget_jindu, "setStep", 6);
 
-        rv.setInt(R.id.widget_jindu, "setColor", Color.argb(255,52,212,2));
-        rv.setInt(R.id.widget_jindu, "setStrokeWidth",20);
+        rv.setInt(R.id.widget_jindu, "setColor", Color.argb(255, 52, 212, 2));
+        rv.setInt(R.id.widget_jindu, "setStrokeWidth", 20);
         rv.setInt(R.id.widget_jindu, "setBackColor", Color.argb(255, 1, 169, 254));
         rv.setFloat(R.id.widget_jindu, "setTextSize", 40);
         rv.setInt(R.id.widget_jindu, "setRate", stage * 100 / 36);
 
 
+        Intent i = new Intent(context, Entrance.class);
+        PendingIntent localPending = PendingIntent.getActivity(context, 0, i, 0);
+        rv.setOnClickPendingIntent(R.id.widget_goto, localPending);
 
-
-        Intent i=new Intent(context,Entrance.class);
-        PendingIntent localPending=PendingIntent.getActivity(context,0,i,0);
-        rv.setOnClickPendingIntent(R.id.widget_goto,localPending);
-
-        AppWidgetManager appWidgetManager=AppWidgetManager.getInstance(context);
-        int[]appids=appWidgetManager.getAppWidgetIds(new ComponentName(context,MWidget.class));
-        appWidgetManager.updateAppWidget(appids,rv);
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        int[] appids = appWidgetManager.getAppWidgetIds(new ComponentName(context, MWidget.class));
+        appWidgetManager.updateAppWidget(appids, rv);
 //        Log.i("LearnWord","Widget update curstage="+stage);
 
 
 //        views.setInt(COURSE_RING_IDS[i], "setRate", i * 10 == 0 ? 1 : i * 10);
 //        views.setInt(COURSE_RING_IDS[i], "setColor", COLORS[i]);
 //        views.setInt(COURSE_RING_IDS[i], "setStrokeWidth", 7);
-
 
 
     }

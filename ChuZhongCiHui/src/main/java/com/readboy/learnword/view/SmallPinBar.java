@@ -15,7 +15,7 @@ import android.view.View;
 public class SmallPinBar extends View {
 
 
-    public int precent=75;
+    public int precent = 75;
     public int angle;
 
     public SmallPinBar(Context context) {
@@ -37,25 +37,24 @@ public class SmallPinBar extends View {
     }
 
 
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 //        canvas.drawColor(Color.WHITE);
-        Paint paint=new Paint();
+        Paint paint = new Paint();
         paint.setAntiAlias(true);
 //        int r=27;int g=207;int b=221;
 
-        paint.setColor(Color.rgb(255,180,0));
+        paint.setColor(Color.rgb(255, 180, 0));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(15);
 
-        angle=360*(precent)/100;
-        canvas.drawArc(new RectF(10, 10, 150, 150), -90,angle+1, false, paint);
+        angle = 360 * (precent) / 100;
+        canvas.drawArc(new RectF(10, 10, 150, 150), -90, angle + 1, false, paint);
 
         paint.setColor(Color.WHITE);
 
-        canvas.drawArc(new RectF(10,10, 150, 150),angle-90,360-angle , false, paint);
+        canvas.drawArc(new RectF(10, 10, 150, 150), angle - 90, 360 - angle, false, paint);
 
     }
 }

@@ -1,13 +1,8 @@
 package com.readboy.learnword;
 
 import android.app.Application;
-import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.os.Build;
-import android.telephony.TelephonyManager;
-import android.util.Log;
 
 /**
  * Created by mao on 13-11-2.
@@ -23,10 +18,10 @@ public class LearnApp extends Application {
 //        Intent i =new Intent(this,Rate.class);
 //        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //        startActivity(i);
-        Resources res=getResources();
-        Configuration c=res.getConfiguration();
-        c.fontScale=1;
-        res.updateConfiguration(c,res.getDisplayMetrics());
+        Resources res = getResources();
+        Configuration c = res.getConfiguration();
+        c.fontScale = 1;
+        res.updateConfiguration(c, res.getDisplayMetrics());
 
 //        seralNumber= Build.SERIAL;
 
@@ -37,10 +32,6 @@ public class LearnApp extends Application {
 //        Log.d("LearnWord","DEVICE_ID"+DEVICE_ID);
 
     }
-
-
-
-
 
 
 }

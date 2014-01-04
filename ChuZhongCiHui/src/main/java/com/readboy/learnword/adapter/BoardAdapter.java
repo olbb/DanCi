@@ -4,24 +4,21 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.readboy.learnword.R;
 import com.readboy.learnword.util.User;
 import com.readboy.learnword.util.Util;
 
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -34,20 +31,20 @@ public class BoardAdapter extends BaseAdapter {
     LayoutInflater mInflater;
     Handler mh;
 
-    public BoardAdapter(Context context,List<User> list){
+    public BoardAdapter(Context context, List<User> list) {
 
 
-        this.context=context;
+        this.context = context;
 //        Log.i("LearnWord",list.size()+" ");
 
 
-        this.list=new ArrayList<User>();
-        for(User user:list){
+        this.list = new ArrayList<User>();
+        for (User user : list) {
             this.list.add(user);
         }
-        mInflater=LayoutInflater.from(context);
-        mh=new Handler();
-        if(this.list.size()==0){
+        mInflater = LayoutInflater.from(context);
+        mh = new Handler();
+        if (this.list.size() == 0) {
             return;
         }
 
@@ -115,32 +112,31 @@ public class BoardAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         final User user;
-        if(list.size()==0){
+        if (list.size() == 0) {
             return convertView;
-        }else
-        if(list.size()>=position){
-            user=list.get(position);
-        }else{
+        } else if (list.size() >= position) {
+            user = list.get(position);
+        } else {
             return convertView;
         }
-        if(user.uid== Util.user.uid){
-            user.userimg=Util.user.userimg;
+        if (user.uid == Util.user.uid) {
+            user.userimg = Util.user.userimg;
         }
 
-        try{
-            if(user.userimg!=null){
+        try {
+            if (user.userimg != null) {
                 viewHolder.img.setImageDrawable(user.userimg);
-            }else{
+            } else {
                 viewHolder.img.setImageDrawable(null);
-                Thread thread=new Thread(new Runnable() {
+                Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        try{
-                            URL url=new URL(user.imagePath);
-                            HttpURLConnection conn=(HttpURLConnection)url.openConnection();
+                        try {
+                            URL url = new URL(user.imagePath);
+                            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                             conn.connect();
-                            InputStream is=conn.getInputStream();
-                            user.userimg= Drawable.createFromStream(is, null);
+                            InputStream is = conn.getInputStream();
+                            user.userimg = Drawable.createFromStream(is, null);
                             is.close();
                             mh.post(new Runnable() {
                                 @Override
@@ -151,7 +147,7 @@ public class BoardAdapter extends BaseAdapter {
                             });
 
 
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
 
@@ -160,40 +156,40 @@ public class BoardAdapter extends BaseAdapter {
                 thread.start();
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
 
         viewHolder.name.setText(user.realname);
 
-        int minci=position+1;
+        int minci = position + 1;
 
-        if(position<3||position==0){
-            viewHolder.stage.setText("0"+minci+"");
-            viewHolder.stage.setTextColor(Color.rgb(255,127,2));
+        if (position < 3 || position == 0) {
+            viewHolder.stage.setText("0" + minci + "");
+            viewHolder.stage.setTextColor(Color.rgb(255, 127, 2));
             viewHolder.stage.setTextSize(36);
-        }else if(position<9){
-            viewHolder.stage.setText("0"+minci+"");
+        } else if (position < 9) {
+            viewHolder.stage.setText("0" + minci + "");
             viewHolder.stage.setTextSize(30);
-            viewHolder.stage.setTextColor(Color.rgb(99,99,99));
-        }else{
-            viewHolder.stage.setText(minci+"");
+            viewHolder.stage.setTextColor(Color.rgb(99, 99, 99));
+        } else {
+            viewHolder.stage.setText(minci + "");
             viewHolder.stage.setTextSize(30);
-            viewHolder.stage.setTextColor(Color.rgb(99,99,99));
+            viewHolder.stage.setTextColor(Color.rgb(99, 99, 99));
         }
 
         viewHolder.time.setText(user.time);
 //        viewHolder.qushi.setText(user.pre+"");
-        int qs=user.pre-position-1;
-        if(qs>0){
-            viewHolder.qushi.setText("+"+qs+" ↑");
+        int qs = user.pre - position - 1;
+        if (qs > 0) {
+            viewHolder.qushi.setText("+" + qs + " ↑");
             viewHolder.qushi.setTextColor(Color.GREEN);
-        }else if(qs==0){
+        } else if (qs == 0) {
             viewHolder.qushi.setText("- -");
             viewHolder.qushi.setTextColor(Color.GRAY);
-        }else {
-            viewHolder.qushi.setText(qs+" ↓");
+        } else {
+            viewHolder.qushi.setText(qs + " ↓");
             viewHolder.qushi.setTextColor(Color.RED);
         }
 //        Log.d("Tag","Add User "+user.toString());
@@ -202,18 +198,17 @@ public class BoardAdapter extends BaseAdapter {
 
     class ViewHolder {
 
-        private TextView time,name,stage,qushi;
+        private TextView time, name, stage, qushi;
         private ImageView img;
-
 
 
         public ViewHolder(View view) {
 
-            time=(TextView) view.findViewById(R.id.board_user_time);
-            name=(TextView) view.findViewById(R.id.board_user_name);
-            stage=(TextView) view.findViewById(R.id.board_user_stage);
-            qushi=(TextView) view.findViewById(R.id.board_user_qushi);
-            img=(ImageView) view.findViewById(R.id.board_user_img);
+            time = (TextView) view.findViewById(R.id.board_user_time);
+            name = (TextView) view.findViewById(R.id.board_user_name);
+            stage = (TextView) view.findViewById(R.id.board_user_stage);
+            qushi = (TextView) view.findViewById(R.id.board_user_qushi);
+            img = (ImageView) view.findViewById(R.id.board_user_img);
         }
     }
 

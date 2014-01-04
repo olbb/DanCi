@@ -9,13 +9,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by Mar on 13-9-30.
  */
-public class DbHelper extends SQLiteOpenHelper{
+public class DbHelper extends SQLiteOpenHelper {
 
     static final String dbName = "LearnWord.db";// 数据库名
     static final String name = "";
     static final String tableName = "wrongword";// 数据表名称
     SQLiteDatabase db;
-    static int db_version=1;
+    static int db_version = 1;
 
     public DbHelper(Context context) {
         super(context, dbName, null, db_version);
@@ -54,21 +54,21 @@ public class DbHelper extends SQLiteOpenHelper{
         db.insert(tableName, null, cv);
     }
 
-    public void into(Word word ){
-        Cursor cur=db.rawQuery("select * from "+tableName+" where word_index="+word.index,null);
-        ContentValues cv=new ContentValues();
-        cv.put("word_name",word.word);
-        cv.put("word_index",word.index);
-        cv.put("word_expl",word.expl);
+    public void into(Word word) {
+        Cursor cur = db.rawQuery("select * from " + tableName + " where word_index=" + word.index, null);
+        ContentValues cv = new ContentValues();
+        cv.put("word_name", word.word);
+        cv.put("word_index", word.index);
+        cv.put("word_expl", word.expl);
 
-        if (cur.getCount()==0){
-            cv.put("word_count",1);
+        if (cur.getCount() == 0) {
+            cv.put("word_count", 1);
             insert(cv);
-        }else{
+        } else {
             cur.moveToFirst();
-            int x=cur.getInt(3)+1;
-            cv.put("word_count",x);
-            update(cv,cur.getInt(0)+"");
+            int x = cur.getInt(3) + 1;
+            cv.put("word_count", x);
+            update(cv, cur.getInt(0) + "");
         }
         cur.close();
 
@@ -105,11 +105,9 @@ public class DbHelper extends SQLiteOpenHelper{
 //        return db.query(tableName, null, "id=?", new String[] { id }, null,
 //                null, null, null);
 //    }
-
-
     public Cursor queryword(int word_index) {
         // TODO Auto-generated method stub
-        String sql = "select id from "+tableName+" where word_index like '"+word_index+"'";
+        String sql = "select id from " + tableName + " where word_index like '" + word_index + "'";
         return db.rawQuery(sql, null);
     }
 
@@ -121,13 +119,13 @@ public class DbHelper extends SQLiteOpenHelper{
      * @return
      */
     public int delete(int word_index) {
-        return db.delete(tableName, "word_index=?", new String[] { word_index+"" });
+        return db.delete(tableName, "word_index=?", new String[]{word_index + ""});
     }
 
     /**
      * 根据id修改操作
      */
     public void update(ContentValues cv, String id) {
-        db.update(tableName, cv, "id=?", new String[] { id });
+        db.update(tableName, cv, "id=?", new String[]{id});
     }
 }

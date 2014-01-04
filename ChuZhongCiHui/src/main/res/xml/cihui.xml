@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<appwidget-provider android:minWidth="393dp" android:minHeight="407dp"
-    android:updatePeriodMillis="1800000" android:initialLayout="@layout/cihuiwidget"
+<appwidget-provider
+    android:minWidth="393dp"
+    android:minHeight="407dp"
+    android:updatePeriodMillis="1800000"
+    android:initialLayout="@layout/cihuiwidget"
     android:previewImage="@drawable/dcdr"
     xmlns:android="http://schemas.android.com/apk/res/android" />
