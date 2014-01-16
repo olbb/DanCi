@@ -1,4 +1,4 @@
-//package com.readboy.learnword.adapter;
+//package com.readboy.learnword.wordlib.adapter;
 //
 //import android.app.Activity;
 //import android.content.Context;

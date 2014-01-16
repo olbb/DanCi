@@ -3,6 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="675dp"
     android:layout_height="457dp"
+    android:id="@+id/jz_bg"
     android:background="@drawable/jz">
 
     <ImageView

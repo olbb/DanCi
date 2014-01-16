@@ -207,8 +207,11 @@ public class ErrorWord extends Activity {
         }
 
 
+
         edp = new ErrorWordAdapter(this);
         list.setAdapter(edp);
+
+
 //        test();
 
 //        writedb();

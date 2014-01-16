@@ -7,7 +7,7 @@
     android:background="#dcdcdc">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:id="@+id/board_title"
         android:layout_height="100dp"
@@ -16,11 +16,31 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_marginLeft="50dp"
+            android:layout_centerVertical="true"
             android:layout_height="wrap_content"
             android:src="@drawable/board_title" />
 
+        <RadioGroup android:visibility="visible"
+            android:layout_width="wrap_content" android:layout_alignParentRight="true"
+            android:layout_marginRight="50dp" android:layout_centerVertical="true"
+            android:orientation="horizontal" android:id="@+id/rdg_board"
+            android:layout_height="wrap_content">
 
-    </LinearLayout>
+            <RadioButton
+                android:layout_width="wrap_content" android:button="@null"
+                android:background="@drawable/qfb" android:id="@+id/rbtn_qfb"
+                android:layout_height="wrap_content" android:checked="true"
+                android:layout_marginRight="20dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content" android:button="@null"
+                android:background="@drawable/tzb" android:id="@+id/rbtn_tzb"
+                android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="230dp"
@@ -57,7 +77,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:singleLine="true"
                     android:layout_marginBottom="5dp"
                     android:layout_height="wrap_content"
@@ -68,7 +88,7 @@
                     android:layout_width="wrap_content"
                     android:textColor="@color/white"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:singleLine="true"
                     android:id="@+id/board_usergrade"
                     android:text="没有数据" />
@@ -78,63 +98,113 @@
 
         </RelativeLayout>
 
+        <LinearLayout android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:id="@+id/board_qinfen_info"
+            android:orientation="vertical" android:layout_marginTop="50dp"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="总排名"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="75dp"
+                android:textColor="@color/white"
+                android:text="--"
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:id="@+id/board_totalrank"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="本周排名"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:singleLine="true"
+                android:layout_height="wrap_content"
+                android:textSize="75dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/board_weekrank"
+                android:layout_marginLeft="20dp"
+                android:text="--" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:id="@+id/board_totaltime"
+                android:layout_marginTop="65dp"
+                android:layout_marginLeft="20dp"
+                android:text="总用时: 没有数据" />
+
+            </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent" android:visibility="gone"
+        android:layout_marginTop="50dp" android:id="@+id/board_tiaozhan_info"
+        android:layout_height="match_parent">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:text="总排名"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content" android:textColor="@color/white"
+            android:textSize="16dp" android:text="我的排名"
             android:layout_marginLeft="20dp"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:layout_width="90dp"
-            android:textSize="75sp"
-            android:textColor="@color/white"
-            android:text="--"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:id="@+id/board_totalrank"
-            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content" android:id="@+id/board_tiaozhan_rate"
+            android:layout_height="wrap_content" android:textColor="@color/blue"
+            android:singleLine="true"
+            android:textSize="80dp" android:text="--" android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"/>
+        
+        <Button
+            android:layout_width="wrap_content" android:background="@drawable/wdxx"
+            android:id="@+id/board_tiaozhan_msg" android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" android:layout_marginBottom="120dp"
             android:layout_height="wrap_content" />
 
+        <Button
+            android:layout_width="wrap_content" android:background="@drawable/wdryq"
+            android:id="@+id/board_tiaozhan_ryq" android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" android:layout_marginBottom="50dp"
+            android:layout_height="wrap_content" />
+        
         <TextView
-            android:layout_width="wrap_content"
-            android:text="本周排名"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content" android:singleLine="true"
+            android:textColor="@color/white" android:text="12" android:textSize="12dp"
+            android:id="@+id/board_tiaozhan_msgnum" android:layout_alignParentBottom="true"
+            android:layout_marginBottom="145dp" android:layout_marginLeft="168dp"
             android:layout_height="wrap_content" />
 
+        </RelativeLayout>
 
-        <TextView
-            android:layout_width="90dp"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:layout_height="wrap_content"
-            android:textSize="75sp"
-            android:layout_marginTop="10dp"
-            android:id="@+id/board_weekrank"
-            android:layout_marginLeft="20dp"
-            android:text="--" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:textColor="@color/white"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:id="@+id/board_totaltime"
-            android:layout_marginTop="65dp"
-            android:layout_marginLeft="20dp"
-            android:text="总用时: 没有数据" />
 
 
     </LinearLayout>
 
 
-    <LinearLayout
+    <LinearLayout android:visibility="visible"
         android:layout_width="455dp"
         android:orientation="vertical"
         android:layout_marginTop="100dp"
@@ -151,7 +221,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:text="总排行"
-                android:textSize="32sp"
+                android:textSize="32dp"
                 android:layout_height="match_parent"
                 android:textColor="@color/white"
                 android:layout_marginLeft="22dp"
@@ -170,7 +240,7 @@
                 android:layout_width="wrap_content"
                 android:textColor="#acacac"
                 android:text="姓名"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content" />
 
@@ -178,7 +248,7 @@
                 android:layout_width="wrap_content"
                 android:textColor="#acacac"
                 android:text="总用时"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 android:layout_marginLeft="140dp"
                 android:layout_height="wrap_content" />
 
@@ -187,7 +257,7 @@
                 android:textColor="#acacac"
                 android:layout_marginLeft="145dp"
                 android:text="名次"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <!--<include layout="@layout/board_item"/>-->
@@ -216,6 +286,7 @@
         android:layout_height="600dp"
         android:layout_marginLeft="775dp"
         android:background="@color/white"
+        android:visibility="visible"
         android:id="@+id/board_week_view">
 
         <LinearLayout
@@ -226,7 +297,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:text="本周排行"
-                android:textSize="32sp"
+                android:textSize="32dp"
                 android:layout_height="match_parent"
                 android:textColor="@color/white"
                 android:layout_marginLeft="22dp"
@@ -245,7 +316,7 @@
                 android:layout_width="wrap_content"
                 android:textColor="#acacac"
                 android:text="姓名"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content" />
 
@@ -253,7 +324,7 @@
                 android:layout_width="wrap_content"
                 android:textColor="#acacac"
                 android:text="总用时"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 android:layout_marginLeft="140dp"
                 android:layout_height="wrap_content" />
 
@@ -262,7 +333,7 @@
                 android:textColor="#acacac"
                 android:layout_marginLeft="145dp"
                 android:text="名次"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <!--<include layout="@layout/board_item"/>-->
@@ -281,6 +352,245 @@
             android:layout_marginLeft="200dp" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="930dp"
+        android:orientation="vertical"
+        android:layout_marginTop="100dp"
+        android:layout_height="600dp"
+        android:layout_marginLeft="300dp"
+        android:background="@color/white" android:visibility="gone"
+        android:id="@+id/board_tiaozhan_view">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="#009cff"
+            android:layout_height="100dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="挑战榜\nPK LIST"
+                android:textSize="32dp"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:layout_marginLeft="22dp"
+                android:gravity="center_vertical" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/tiaozhantitle">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:textColor="#acacac"
+                android:text="名次"
+                android:textSize="18dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="#acacac"
+                android:text="头像"
+                android:textSize="18dp"
+                android:layout_marginLeft="120dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="#acacac"
+                android:layout_marginLeft="120dp"
+                android:text="昵称"
+                android:textSize="18dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="#acacac"
+                android:layout_marginLeft="120dp"
+                android:text="用时"
+                android:textSize="18dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="#acacac"
+                android:layout_marginLeft="120dp"
+                android:text="正确率"
+                android:textSize="18dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="#acacac"
+                android:layout_marginLeft="120dp"
+                android:text="挑战"
+                android:textSize="18dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <!--<include layout="@layout/board_item"/>-->
+
+        <ListView
+            android:layout_width="match_parent"
+            android:id="@+id/list_tiaozhan"
+            android:layout_height="match_parent"
+            android:clickable="false" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large.Inverse"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-350dp"
+            android:id="@+id/prog_tiaozhan"
+            android:layout_marginLeft="400dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="930dp"
+        android:orientation="vertical"
+        android:layout_marginTop="100dp"
+        android:layout_height="600dp"
+        android:layout_marginLeft="300dp"
+        android:background="@color/white" android:visibility="gone"
+        android:id="@+id/board_msg_view">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="#009cff" android:gravity="center_vertical"
+            android:layout_height="100dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="我的消息\nMY MESSAGE"
+                android:textSize="32dp" android:layout_centerVertical="true"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:layout_marginLeft="22dp"
+                android:gravity="center_vertical" />
+
+            <Button
+                android:layout_width="wrap_content" android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/board_msg_back"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content" android:id="@+id/board_msg_back"
+                />
+
+        </RelativeLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:id="@+id/list_msg"
+            android:layout_height="match_parent"
+            android:clickable="false" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large.Inverse"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-350dp"
+            android:id="@+id/prog_msg"
+            android:layout_marginLeft="400dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="930dp"
+        android:orientation="vertical"
+        android:layout_marginTop="100dp"
+        android:layout_height="600dp"
+        android:layout_marginLeft="300dp"
+        android:background="@color/white" android:visibility="gone"
+        android:id="@+id/board_rongyu_view">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="#009cff" android:gravity="center_vertical"
+            android:layout_height="100dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="我的荣誉墙\nMY WALL OF HONOR"
+                android:textSize="32dp"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:layout_marginLeft="22dp"
+                android:gravity="center_vertical" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/board_msg_back"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content" android:id="@+id/board_rongyu_back"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <View
+                android:layout_width="fill_parent" android:background="@color/dividing"
+                android:layout_marginTop="50dp"
+                android:layout_height="0.5dp"/>
+
+            <View
+                android:layout_width="1dp" android:background="@color/dividing"
+                android:layout_height="fill_parent" android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:layout_width="wrap_content" android:textColor="#acacac"
+                android:textSize="22dp" android:text="上周"
+                android:layout_marginLeft="20dp" android:layout_marginTop="10dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content" android:textColor="#acacac"
+                android:textSize="22dp" android:text="奖杯总数"
+                android:layout_marginLeft="500dp" android:layout_marginTop="10dp"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="wrap_content" android:orientation="horizontal"
+                android:layout_height="wrap_content" android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true" android:gravity="center"
+                android:layout_margin="40dp">
+
+                <TextView
+                    android:layout_width="wrap_content" android:text="分享到:"
+                    android:textSize="25dp" android:layout_marginRight="10dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:layout_width="wrap_content" android:id="@+id/tx"
+                    android:layout_marginRight="10dp"
+                    android:layout_height="wrap_content" android:background="@drawable/tx"/>
+
+                <Button
+                    android:layout_width="wrap_content" android:id="@+id/xl"
+                    android:layout_height="wrap_content" android:background="@drawable/xl" />
+
+                </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+
+
 
 
     <LinearLayout
@@ -301,7 +611,7 @@
         <Button
             android:layout_width="wrap_content"
             android:text="      网络设置      "
-            android:textSize="25sp"
+            android:textSize="25dp"
             android:layout_marginTop="25dp"
             android:id="@+id/board_gonetsetting"
             android:layout_height="wrap_content"
@@ -322,7 +632,7 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:textSize="30sp"
+            android:textSize="30dp"
             android:layout_height="wrap_content"
             android:text="你尚未注册网校\n无法使用排行榜\n请注册" />
 

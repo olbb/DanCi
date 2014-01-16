@@ -4,7 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ChuZhongCiHui/ChuZhongCihui.iml" filepath="$PROJECT_DIR$/ChuZhongCiHui/ChuZhongCihui.iml" />
       <module fileurl="file://$PROJECT_DIR$/DanCi.iml" filepath="$PROJECT_DIR$/DanCi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GaoZhongCiHui/GaoZhongCiHui.iml" filepath="$PROJECT_DIR$/GaoZhongCiHui/GaoZhongCiHui.iml" />
       <module fileurl="file://$PROJECT_DIR$/XiaoXueCiHui/XiaoXueCiHui.iml" filepath="$PROJECT_DIR$/XiaoXueCiHui/XiaoXueCiHui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>

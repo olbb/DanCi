@@ -4,16 +4,27 @@
     android:splitMotionEvents="false"
     android:layout_height="match_parent">
 
+    <HorizontalScrollView
+        android:layout_width="1280dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="0dp"
+        android:id="@+id/barrier_stage_scroll">
+
+        <include layout="@layout/barrier_stage" />
+
+    </HorizontalScrollView>
+
 
     <RelativeLayout
         android:id="@+id/titlebar"
         android:layout_width="fill_parent"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_height="94dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:background="@color/white"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        >
 
 
         <ReadboyImageView
@@ -24,18 +35,12 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="94dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
             android:splitMotionEvents="false"
             android:layout_marginRight="2dp">
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="3dp"
-                android:background="#ffffff" />
+
 
             <Button
                 android:layout_width="wrap_content"
@@ -77,18 +82,6 @@
     <!--android:layout_marginLeft="136dp" android:layout_marginRight="136dp"-->
     <!--android:layout_marginTop="10dp" android:splitMotionEvents="false"/>-->
 
-    <HorizontalScrollView
-        android:layout_width="1280dp"
-        android:layout_below="@id/titlebar"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="50dp"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="5dp"
-        android:scrollbarThumbHorizontal="@drawable/scrollbar"
-        android:id="@+id/barrier_stage_scroll">
 
-        <include layout="@layout/barrier_stage" />
-
-    </HorizontalScrollView>
 
 </RelativeLayout>

@@ -1,4 +1,4 @@
-//package com.readboy.learnword.view;
+//package com.readboy.learnword.wordlib.view;
 //
 //import android.app.Dialog;
 //import android.content.Context;

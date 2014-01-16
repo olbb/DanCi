@@ -21,12 +21,14 @@
     <string name="tips_usecurrentword">请使用本关学习的单词</string>
 
     <string name="chenghao0">无名小卒</string>
-    <string name="chenghao1">初来乍到</string>
-    <string name="chenghao2">锋芒乍现</string>
-    <string name="chenghao3">勇往直前</string>
-    <string name="chenghao4">小有成就</string>
-    <string name="chenghao5">声名显赫</string>
-    <string name="chenghao6">单词达人</string>
+    <string name="chenghao1">天天向上</string>
+    <string name="chenghao2">得心应手</string>
+    <string name="chenghao3">单词精英</string>
+    <string name="chenghao4">势如破竹</string>
+    <string name="chenghao5">过关斩将</string>
+    <string name="chenghao6">单词高手</string>
+    <string name="chenghao7">才高八斗</string>
+    <string name="chenghao8">单词达人</string>
 
 
     <string name="next">下一个</string>

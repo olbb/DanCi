@@ -30,6 +30,7 @@ public class Config extends Activity {
     boolean timechanged;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

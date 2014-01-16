@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -207,8 +208,11 @@ public class ErrorWord extends Activity {
         }
 
 
+
         edp = new ErrorWordAdapter(this);
         list.setAdapter(edp);
+
+
 //        test();
 
 //        writedb();

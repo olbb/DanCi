@@ -19,6 +19,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.readboy.encrypt.EncryptReader;
@@ -39,7 +42,7 @@ import java.util.Properties;
 /**
  * Created by mao on 13-11-12.
  */
-public class Board extends Activity implements View.OnClickListener {
+public class Board extends Activity implements View.OnClickListener ,RadioGroup.OnCheckedChangeListener {
 
     Button zb, zongb, tgb;
     Button upload, userinfo;
@@ -50,7 +53,7 @@ public class Board extends Activity implements View.OnClickListener {
     ImageView userimg;
 
     TextView totaltime, totalrank, weekrank;
-    ListView total, week;
+    ListView total, week ,tiaozhan;
     static BoardAdapter totaladp, weekadp;
     public static List<User> totallist, weeklist;
 
@@ -58,11 +61,20 @@ public class Board extends Activity implements View.OnClickListener {
 
     public static Board instance;
 
-    LinearLayout totalview, weekview, totaltitle, weektitle;
+    LinearLayout totalview, weekview, totaltitle, weektitle ,qfinfo,tiaozhanview,tiaozhantitle;
+    RelativeLayout tiaozhaninfo;
 
     ProgressBar prog1, prog2;
 
+    RadioGroup rdg;
+    RadioButton qfb,tzb;
+    Button tx,xl;//腾讯微博       新浪微博
+    LinearLayout msgview,rongyuview;
+    Button msg,rongyu,msgback,rongyuback;
+
     public static int id;//防止消息混乱
+
+
 
     /**
      * 用户信息存在目录地址. [含文件名]
@@ -110,6 +122,10 @@ public class Board extends Activity implements View.OnClickListener {
         totaltitle = (LinearLayout) findViewById(R.id.totaltitle);
         weektitle = (LinearLayout) findViewById(R.id.weektitle);
 
+        qfinfo=(LinearLayout)findViewById(R.id.board_qinfen_info);
+
+        inittiaozhanui();
+
         total.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -119,6 +135,8 @@ public class Board extends Activity implements View.OnClickListener {
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 totaltitle.invalidate();
+
+
             }
         });
 
@@ -186,26 +204,68 @@ public class Board extends Activity implements View.OnClickListener {
         }
 
 
-//        if(totaladp==null){
-//
-//            totaladp=new BoardAdapter(this,totallist);
-//        }else{
-//            totaladp.updateAdapter(this,totallist);
-//        }
-//        if(weekadp==null){
-//            weekadp=new BoardAdapter(this,weeklist);
-//        }else {
-//            weekadp.updateAdapter(this,weeklist);
-//        }
-//
-//
-//        total.setAdapter(totaladp);
-//        week.setAdapter(weekadp);
+
 
 
         onClick(userinfo);
         onClick(zb);
         onClick(zongb);
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+        if(group.equals(rdg)){
+
+            rongyuview.setVisibility(View.GONE);
+            msgview.setVisibility(View.GONE);
+
+            switch (checkedId){
+                case R.id.rbtn_qfb:
+                    qfinfo.setVisibility(View.VISIBLE);
+                    tiaozhaninfo.setVisibility(View.GONE);
+                    weekview.setVisibility(View.VISIBLE);
+                    totalview.setVisibility(View.VISIBLE);
+                    tiaozhanview.setVisibility(View.GONE);
+                    break;
+
+                case R.id.rbtn_tzb:
+                    qfinfo.setVisibility(View.GONE);
+                    tiaozhaninfo.setVisibility(View.VISIBLE);
+                    weekview.setVisibility(View.GONE);
+                    totalview.setVisibility(View.GONE);
+                    tiaozhanview.setVisibility(View.VISIBLE);
+                    break;
+            }
+
+
+        }
+
+    }
+
+    public void inittiaozhanui(){
+        rdg=(RadioGroup)findViewById(R.id.rdg_board);
+        rdg.setOnCheckedChangeListener(this);
+        tiaozhanview=(LinearLayout)findViewById(R.id.board_tiaozhan_view);
+        tiaozhantitle=(LinearLayout)findViewById(R.id.tiaozhantitle);
+        tiaozhaninfo=(RelativeLayout)findViewById(R.id.board_tiaozhan_info);
+        tx=(Button)findViewById(R.id.tx);
+        xl=(Button)findViewById(R.id.xl);
+        msg=(Button)findViewById(R.id.board_tiaozhan_msg);
+        rongyu=(Button)findViewById(R.id.board_tiaozhan_ryq);
+        msgback=(Button)findViewById(R.id.board_msg_back);
+        rongyuback=(Button)findViewById(R.id.board_rongyu_back);
+        tx.setOnClickListener(this);
+        xl.setOnClickListener(this);
+        msg.setOnClickListener(this);
+        rongyu.setOnClickListener(this);
+        msgback.setOnClickListener(this);
+        rongyuback.setOnClickListener(this);
+
+        msgview=(LinearLayout)findViewById(R.id.board_msg_view);
+        rongyuview=(LinearLayout)findViewById(R.id.board_rongyu_view);
+
+
     }
 
     String url = "";
@@ -255,6 +315,32 @@ public class Board extends Activity implements View.OnClickListener {
             case R.id.test_getuserinfo:
                 Util.httpget(Util.userinfo, id);
                 break;
+
+            case R.id.board_tiaozhan_ryq:
+                rongyuview.setVisibility(View.VISIBLE);
+                msgview.setVisibility(View.GONE);
+                break;
+
+            case R.id.board_rongyu_back:
+                rongyuview.setVisibility(View.GONE);
+                break;
+
+            case  R.id.board_tiaozhan_msg:
+                rongyuview.setVisibility(View.GONE);
+                msgview.setVisibility(View.VISIBLE);
+                break;
+
+            case R.id.board_msg_back:
+                msgview.setVisibility(View.GONE);
+                break;
+
+            case R.id.tx:
+
+                break;
+
+            case R.id.xl:
+                break;
+
         }
     }
 
@@ -433,11 +519,15 @@ public class Board extends Activity implements View.OnClickListener {
         for (User user : totallist) {
             user.recyle();
         }
+        if(totaladp!=null)totaladp.recycle();
+
+        if(weekadp!=null)weekadp.recycle();
         hanler.removeMessages(UPDATE_TOTAL_BOARD);
         hanler.removeMessages(UPDATE_WEEK_BOARD);
         hanler.removeMessages(UPDATE_USER_INFO);
 
         Util.onBoardDestory();
+        System.gc();
     }
 
     boolean getWifiState() {

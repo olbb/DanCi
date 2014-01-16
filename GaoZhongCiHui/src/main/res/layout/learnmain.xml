@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LearnWord">
+
+    <include
+        layout="@layout/titlebar"
+        android:id="@+id/titlebar" />
+
+    <include layout="@layout/timer" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titlebar"
+        android:orientation="horizontal"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:id="@+id/rds">
+
+        <RadioButton
+            style="@style/DefBtn"
+            android:text="默认"
+            android:button="@null"
+            android:layout_width="105dp"
+            android:id="@+id/word_def"
+            android:visibility="gone"
+            android:checked="true"
+            android:layout_margin="1dp" />
+
+        <RadioButton
+            android:button="@null"
+            android:layout_width="wrap_content"
+            android:id="@+id/word_exampl"
+            android:background="@drawable/radio_exampl"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:layout_marginRight="20dp" />
+
+        <RadioButton
+            android:button="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/word_spell"
+            android:background="@drawable/radio_spell"
+            android:checked="false"
+            android:layout_marginRight="20dp" />
+
+        <RadioButton
+            style="@style/DefBtn"
+            android:text="@string/word_read"
+            android:button="@null"
+            android:layout_width="105dp"
+            android:id="@+id/word_read"
+            android:layout_margin="1dp"
+            android:visibility="gone" />
+
+    </RadioGroup>
+
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="55dp"
+        android:id="@+id/items"
+        android:layout_below="@id/rds"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="55dp"
+        android:layout_marginBottom="80dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/def_wordinfo"
+            android:layout_marginTop="50dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="85sp"
+                    android:id="@+id/word_word"
+                    android:singleLine="true"
+                    android:layout_marginRight="50dp"
+                    android:textColor="#497efc"
+                    android:text="Word"
+                    android:gravity="center_vertical" />
+
+                <Button
+                    style="@style/DefBtn"
+                    android:id="@+id/readword"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/readword" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/word_phon"
+                android:text="Phon"
+                android:gravity="center_vertical"
+                android:textSize="24sp"
+                android:textColor="#009eff" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:id="@+id/word_expl"
+                android:gravity="center_vertical"
+                android:textSize="24sp"
+                android:text="Expl" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:id="@+id/readresult"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:id="@+id/readscore"
+                    android:text="综合能力评分:85分"
+                    android:layout_alignParentBottom="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:id="@+id/readgrade"
+                    android:text="@string/readgrade3"
+                    android:layout_toRightOf="@id/readscore"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textColor="@color/brown"
+                    android:background="@drawable/scoregradebg" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+        <include layout="@layout/spellword" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/wordinfo_examp"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:id="@+id/word_exampen" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:id="@+id/word_exampcn"
+                android:layout_marginTop="15dp" />
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/defrect"
+        android:id="@+id/bottombar">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
+            android:orientation="horizontal"
+            android:id="@+id/btns"
+            android:gravity="center_vertical">
+
+            <Button
+                style="@style/OthBtn"
+                android:layout_width="wrap_content"
+                android:text="@string/last"
+                android:id="@+id/lastword"
+                android:visibility="gone" />
+
+            <Button
+                style="@style/OthBtn"
+                android:layout_width="wrap_content"
+                android:text="@string/next"
+                android:id="@+id/nextword" />
+
+            <Button
+                style="@style/OthBtn"
+                android:layout_width="wrap_content"
+                android:text="@string/gotest"
+                android:id="@+id/gotest"
+                android:visibility="gone" />
+
+            <Button
+                style="@style/OthBtn"
+                android:layout_width="wrap_content"
+                android:text="继续测试"
+                android:id="@+id/goont"
+                android:visibility="gone" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

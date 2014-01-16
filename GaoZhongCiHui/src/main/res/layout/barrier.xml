@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:splitMotionEvents="false"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/titlebar"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_height="94dp"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+        <ReadboyImageView
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_width="wrap_content"
+            android:src="@drawable/danci_title" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="94dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:splitMotionEvents="false"
+            android:layout_marginRight="2dp">
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="#ffffff" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rankinglist"
+                android:background="@drawable/btn_rankinglist"
+                android:layout_marginRight="10dp" />
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/wrongwordsbook"
+                android:background="@drawable/btn_errorword"
+                android:layout_marginRight="10dp" />
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/myrates"
+                android:background="@drawable/btn_myrate" />
+
+
+            <Button
+                android:id="@+id/close"
+                android:background="@drawable/btn_close"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <!--<GridView android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/titlebar" android:id="@+id/barriers"-->
+    <!--android:numColumns="4" android:horizontalSpacing="20dp" android:verticalSpacing="10dp"-->
+    <!--android:layout_marginLeft="136dp" android:layout_marginRight="136dp"-->
+    <!--android:layout_marginTop="10dp" android:splitMotionEvents="false"/>-->
+
+    <HorizontalScrollView
+        android:layout_width="1280dp"
+        android:layout_below="@id/titlebar"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="50dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:scrollbarThumbHorizontal="@drawable/scrollbar"
+        android:id="@+id/barrier_stage_scroll">
+
+        <include layout="@layout/barrier_stage" />
+
+    </HorizontalScrollView>
+
+</RelativeLayout>

@@ -3,6 +3,7 @@ package com.readboy.learnword;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.readboy.learnword.util.Util;
@@ -18,6 +19,7 @@ public class ChengHao {
     ImageView chenghao;
     TextView name;
     Dialog dialog;
+    RelativeLayout bg;
 
     public ChengHao(final TestWords context) {
 
@@ -33,6 +35,13 @@ public class ChengHao {
             username = "Dear";
         }
         name.setText(username);
+
+        bg=(RelativeLayout)dialog.findViewById(R.id.jz_bg);
+        if(Util.cj[Util.curstage/6]==1){
+            bg.setBackgroundResource(R.drawable.cz_ch);
+        }else {
+            bg.setBackgroundResource(R.drawable.cz_cj);
+        }
 
         dialog.show();
 

@@ -279,6 +279,8 @@ public class LearnWord extends Activity implements OnClickListener, OnCheckedCha
         }
         temptime = timer.getBase();
 
+        timer.stop();
+        temptime = SystemClock.elapsedRealtime();
 
     }
 
@@ -298,10 +300,10 @@ public class LearnWord extends Activity implements OnClickListener, OnCheckedCha
 //        Log.i(tag,"LearnWord onResume");
         music.setChecked(Config.music);
         if (temptime != 0) {
-            timer.setBase(temptime);
+            timer.setBase(timer.getBase() + (SystemClock.elapsedRealtime() - temptime));
+            timer.start();
         }
 
-        timer.start();
 
         Util.setfont(LearnWord.this);
 
@@ -527,6 +529,7 @@ public class LearnWord extends Activity implements OnClickListener, OnCheckedCha
             im.showSoftInput(spell_text, InputMethodManager.SHOW_FORCED);
             spell_del.setVisibility(View.GONE);
             spell_touch.setVisibility(View.GONE);
+            spell_text.setSelection(spell_text.getText().toString().length());
         }
 
     }
@@ -614,17 +617,22 @@ public class LearnWord extends Activity implements OnClickListener, OnCheckedCha
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        Log.i(tag,"LearnWord OnDestroy");
-        List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+        try{
+            //        Log.i(tag,"LearnWord OnDestroy");
+            List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 //        long temp= SystemClock.elapsedRealtime()-timer.getBase();
 //        int second=(int)temp/1000;
-        String time = timer.getText().toString();
-        String s[] = time.split(":");
-        int second = Integer.parseInt(s[0]) * 60 + Integer.parseInt(s[1]);
+            String time = timer.getText().toString();
+            String s[] = time.split(":");
+            int second = Integer.parseInt(s[0]) * 60 + Integer.parseInt(s[1]);
 //        Log.d(tag,"LearnWord addtime:"+second);
-        NameValuePair pair = new BasicNameValuePair("time", second + "");
-        pairs.add(pair);
-        Util.httpPost(Util.sendtime, pairs);
+            NameValuePair pair = new BasicNameValuePair("time", second + "");
+            pairs.add(pair);
+            Util.httpPost(Util.sendtime, pairs);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     private static View getRootView(Activity context) {

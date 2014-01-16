@@ -1,241 +1,270 @@
-<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="2100dp" android:layout_height="800dp" android:layout_marginLeft="0dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:background="@drawable/bg">
+
+
+
+    <View
+        android:layout_width="200dp" android:background="@drawable/start"
+        android:layout_height="150dp" android:layout_marginLeft="0dp"
+        android:layout_marginTop="615dp"/>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="50dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    
 
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v1" />
 
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v2" />
+    <View
+        android:layout_width="220dp" android:id="@+id/v5" android:background="@drawable/l_unlocked"
+        android:layout_marginLeft="479dp" android:layout_marginTop="619dp"
+        android:layout_height="150dp"/>
 
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v3" />
+    <View
+        android:layout_width="220dp" android:id="@+id/v10" android:background="@drawable/m_unlocked"
+        android:layout_marginLeft="483dp" android:layout_marginTop="350dp"
+        android:layout_height="150dp"/>
 
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v4" />
+    <View
+        android:layout_width="220dp" android:id="@+id/v15" android:background="@drawable/m_unlocked"
+        android:layout_marginLeft="895dp" android:layout_marginTop="350dp"
+        android:layout_height="150dp"/>
 
+    <View
+        android:layout_width="220dp" android:id="@+id/v20" android:background="@drawable/s_unlocked"
+        android:layout_marginLeft="802dp" android:layout_marginTop="106dp"
+        android:layout_height="150dp"/>
 
-    </LinearLayout>
+    <View
+        android:layout_width="220dp" android:id="@+id/v25" android:background="@drawable/s_unlocked"
+        android:layout_marginLeft="1176dp" android:layout_marginTop="106dp"
+        android:layout_height="150dp"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_marginRight="60dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <View
+        android:layout_width="220dp" android:id="@+id/v30" android:background="@drawable/m_unlocked"
+        android:layout_marginLeft="1325dp" android:layout_marginTop="350dp"
+        android:layout_height="150dp"/>
 
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v5" />
+    <View
+        android:layout_width="220dp" android:id="@+id/v35" android:background="@drawable/m_unlocked"
+        android:layout_marginLeft="1760dp" android:layout_marginTop="350dp"
+        android:layout_height="150dp"/>
 
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v6" />
+    <View
+        android:layout_width="220dp" android:id="@+id/v40" android:background="@drawable/l_unlocked"
+        android:layout_marginLeft="1868dp" android:layout_marginTop="619dp"
+        android:layout_height="150dp"/>
 
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v7" />
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v1"
+        android:layout_marginLeft="209dp" android:layout_marginTop="719dp"
+        android:layout_height="40dp"/>
 
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v8" />
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v2"
+        android:layout_marginLeft="281dp" android:layout_marginTop="719dp"
+        android:layout_height="40dp"/>
 
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v3"
+        android:layout_marginLeft="355dp" android:layout_marginTop="719dp"
+        android:layout_height="40dp"/>
 
-    </LinearLayout>
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v4"
+        android:layout_marginLeft="423dp" android:layout_marginTop="719dp"
+        android:layout_height="40dp"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v9" />
 
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v10" />
 
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v11" />
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v6"
+        android:layout_marginLeft="634dp" android:layout_marginTop="599dp"
+        android:layout_height="40dp"/>
 
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v12" />
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v7"
+        android:layout_marginLeft="634dp" android:layout_marginTop="555dp"
+        android:layout_height="40dp"/>
 
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v8"
+        android:layout_marginLeft="634dp" android:layout_marginTop="511dp"
+        android:layout_height="40dp"/>
 
-    </LinearLayout>
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v9"
+        android:layout_marginLeft="634dp" android:layout_marginTop="467dp"
+        android:layout_height="40dp"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_marginRight="50dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/barrier_stage_liner4">
 
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v13" />
 
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v14" />
 
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v15" />
 
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v16" />
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v11"
+        android:layout_marginLeft="701dp" android:layout_marginTop="445dp"
+        android:layout_height="40dp"/>
 
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v17" />
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v18" />
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v19" />
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v20" />
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_marginRight="50dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/barrier_stage_liner4">
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v21" />
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v22" />
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v23" />
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v24" />
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v25" />
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v26" />
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v27" />
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v28" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_marginRight="50dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/barrier_stage_liner4">
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v29" />
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v30" />
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v31" />
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v32" />
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v33" />
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v34" />
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v35" />
-
-        <include
-            layout="@layout/barrieritem"
-            android:id="@+id/v36" />
-
-
-    </LinearLayout>
-
-</LinearLayout>
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v12"
+        android:layout_marginLeft="761dp" android:layout_marginTop="445dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v13"
+        android:layout_marginLeft="819dp" android:layout_marginTop="445dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v14"
+        android:layout_marginLeft="879dp" android:layout_marginTop="445dp"
+        android:layout_height="40dp"/>
+
+
+
+
+
+
+
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v16"
+        android:layout_marginLeft="1004dp" android:layout_marginTop="323dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v17"
+        android:layout_marginLeft="985dp" android:layout_marginTop="285dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v18"
+        android:layout_marginLeft="965dp" android:layout_marginTop="247dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v19"
+        android:layout_marginLeft="945dp" android:layout_marginTop="207dp"
+        android:layout_height="40dp"/>
+
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v21"
+        android:layout_marginLeft="989dp" android:layout_marginTop="177dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v22"
+        android:layout_marginLeft="1049dp" android:layout_marginTop="177dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v23"
+        android:layout_marginLeft="1109dp" android:layout_marginTop="177dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v24"
+        android:layout_marginLeft="1169dp" android:layout_marginTop="177dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v26"
+        android:layout_marginLeft="1266dp" android:layout_marginTop="224dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v27"
+        android:layout_marginLeft="1286dp" android:layout_marginTop="264dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v28"
+        android:layout_marginLeft="1306dp" android:layout_marginTop="304dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v29"
+        android:layout_marginLeft="1325dp" android:layout_marginTop="344dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v31"
+        android:layout_marginLeft="1525dp" android:layout_marginTop="443dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v32"
+        android:layout_marginLeft="1589dp" android:layout_marginTop="443dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v33"
+        android:layout_marginLeft="1655dp" android:layout_marginTop="443dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v34"
+        android:layout_marginLeft="1721dp" android:layout_marginTop="443dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v36"
+        android:layout_marginLeft="1815dp" android:layout_marginTop="477dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v37"
+        android:layout_marginLeft="1831dp" android:layout_marginTop="517dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v38"
+        android:layout_marginLeft="1847dp" android:layout_marginTop="557dp"
+        android:layout_height="40dp"/>
+
+    <View
+        android:layout_width="42dp" android:background="@drawable/stage_locked"
+        android:id="@+id/v39"
+        android:layout_marginLeft="1863dp" android:layout_marginTop="595dp"
+        android:layout_height="40dp"/>
+
+
+
+    <com.readboy.learnwordx.view.StageAnim
+        android:layout_width="2100dp" android:id="@+id/stageanim"
+        android:layout_height="800dp" />
+
+
+</RelativeLayout>

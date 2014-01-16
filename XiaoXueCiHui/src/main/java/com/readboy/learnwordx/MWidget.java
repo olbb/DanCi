@@ -100,16 +100,16 @@ public class MWidget extends AppWidgetProvider {
 //            stage=1;
 //        }
 
-        if (stage > 36) {
-            stage = 36;
+        if (stage > 40) {
+            stage = 40;
         }
         if (stage < 10) {
             rv.setTextViewText(R.id.widget_stage, "0" + stage);
         } else {
             rv.setTextViewText(R.id.widget_stage, stage + "");
         }
-        rv.setTextViewText(R.id.widget_yiwanchen, stage * 100 / 36 + "%");
-        rv.setTextViewText(R.id.widget_weiwanchen, (100 - stage * 100 / 36) + "%");
+        rv.setTextViewText(R.id.widget_yiwanchen, stage * 100 / 40 + "%");
+        rv.setTextViewText(R.id.widget_weiwanchen, (100 - stage * 100 / 40) + "%");
 
 
 //        Log.i("LearnWord",stage * 100 / 36+" ____");
@@ -119,7 +119,7 @@ public class MWidget extends AppWidgetProvider {
         rv.setInt(R.id.widget_jindu, "setStrokeWidth", 20);
         rv.setInt(R.id.widget_jindu, "setBackColor", Color.argb(255, 1, 169, 254));
         rv.setFloat(R.id.widget_jindu, "setTextSize", 40);
-        rv.setInt(R.id.widget_jindu, "setRate", stage * 100 / 36);
+        rv.setInt(R.id.widget_jindu, "setRate", stage * 100 / 40);
 
 
         Intent i = new Intent(context, Entrance.class);

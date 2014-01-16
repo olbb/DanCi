@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.readboy.learnword"
-    android:versionCode="12"
-    android:versionName="1.7.4"
+    android:versionCode="13"
+    android:versionName="1.8.0"
     android:installLocation="internalOnly">
 
 
@@ -40,6 +40,7 @@
             android:launchMode="singleInstance"
             android:clearTaskOnLaunch="true"
             android:configChanges="fontScale"
+
             android:screenOrientation="sensorLandscape" />
 
         <activity
@@ -75,6 +76,7 @@
         <activity
             android:name=".Config"
             android:clearTaskOnLaunch="true"
+            android:finishOnCloseSystemDialogs="true"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/dialog"></activity>
 

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="1280dp"
+    android:layout_height="370dp"
+    android:background="@color/white">
+
+    <View
+        android:layout_width="5dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/red"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="25dp"
+        android:id="@+id/tipstitle"
+        android:text="温馨提示"
+        android:visibility="gone" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:visibility="gone"
+        android:background="@color/red"
+        android:layout_marginTop="70dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tipsexit"
+        android:background="@drawable/tips_exit"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="3dp"
+        android:visibility="gone" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="60dp"
+        android:id="@+id/tips_linear1"
+        android:layout_marginBottom="40dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gameresult"
+            android:src="@drawable/game_sucess"
+            android:layout_marginRight="10dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:id="@+id/gamerestext"
+                android:text="@string/game_sucess"
+                android:textSize="40dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/gamespendtime"
+                android:text="本关用时8分25秒" />
+
+            <RatingBar
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/tips_rate" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        style="@style/DefBtn"
+        android:text="继续闯关"
+        android:id="@+id/tips_goon"
+        android:layout_centerHorizontal="true"
+        android:layout_width="230dp"
+        android:layout_below="@id/tips_linear1" />
+
+    <Button
+        style="@style/DefBtn"
+        android:text="查看错词本"
+        android:id="@+id/tips_viewwrongwords"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:layout_width="230dp"
+        android:layout_below="@id/tips_linear1" />
+
+
+</RelativeLayout>

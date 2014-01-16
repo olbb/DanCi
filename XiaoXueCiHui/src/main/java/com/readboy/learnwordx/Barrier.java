@@ -10,18 +10,23 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.readboy.encrypt.EncryptReader;
 import com.readboy.learnwordx.util.Util;
+import com.readboy.learnwordx.view.AnimView;
+import com.readboy.learnwordx.view.StageAnim;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +38,6 @@ public class Barrier extends Activity implements View.OnClickListener {
 
     //关卡选择界面
     String TAG = "LearnWord";
-//	GridView grid;
 
     Button close, wrongwords, myrates, board;
 
@@ -45,11 +49,13 @@ public class Barrier extends Activity implements View.OnClickListener {
 
     //颜色 75 172 198  //4b ac c6
 
+    Handler mh;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-
+        getWindow().setFlags(33555456, 33555456);
         instance = this;
 
         int tempstage;
@@ -57,7 +63,10 @@ public class Barrier extends Activity implements View.OnClickListener {
         SharedPreferences sh = getSharedPreferences("barrier", MODE_PRIVATE);
         tempstage = sh.getInt("curstage", 0);
 
+
         String t1;
+
+        mh=new Handler();
 
         if (tempstage > Util.curstage) {
             Util.curstage = tempstage;
@@ -109,60 +118,31 @@ public class Barrier extends Activity implements View.OnClickListener {
         myrates.setOnClickListener(this);
         board = (Button) findViewById(R.id.rankinglist);
         board.setOnClickListener(this);
-//        grid.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View view, MotionEvent e) {
-//                if(e.getPointerCount()>1){
-//                    return true;
-//                }else {
-//                    return false;
-//                }
 //
-//
-//            }
-//        });
-
-//        stage_scroll=(HorizontalScrollView)findViewById(R.id.barrier_stage_scroll);
-//        linear4=(LinearLayout)findViewById(R.id.barrier_stage_liner4);
-//        stage_scroll.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                if(event.getAction()==MotionEvent.ACTION_DOWN){
-//                    motiontemp=(int)event.getX();
-//                }
-//                if(event.getAction()==MotionEvent.ACTION_UP){
-//                    motiontemp=0;
-//                }
-//
-//                if(event.getAction()==MotionEvent.ACTION_MOVE){
-//                    int a[]=new int[2];
-//                    v17.getLocationInWindow(a);
-//                    System.out.println("a[0]<1280"+(a[0]<1280));
-//                    System.out.println("event.getX()-motiontemp"+(event.getX()-motiontemp));
-//                    System.out.println("linertemplength"+linertemplength);
-//
-//
-//                    if(a[0]<1280&&(event.getX()-motiontemp)<0&&linertemplength>60){
-//                        LinearLayout.LayoutParams lp=new
-//                                LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//
-//                        lp.setMargins(0,0,linertemplength--,0);
-//                        linear4.setLayoutParams(lp);
-//                    }else if(a[0]<1280&&(event.getX()-motiontemp)>0){
-//                        LinearLayout.LayoutParams lp=new
-//                                LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//                        lp.setMargins(0,0,linertemplength++,0);
-//                        linear4.setLayoutParams(lp);
-//                    }
-//                }
-//
-//                return false;
-//            }
-//        });
 
         final IntentFilter homeFilter = new IntentFilter(
                 Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
         registerReceiver(homeReceiver, homeFilter);
+//        stage_scroll=(HorizontalScrollView)findViewById(R.id.barrier_stage_scroll);
+//        stage_scroll.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                switch (event.getAction()){
+//                    case MotionEvent.ACTION_DOWN:
+//                        anim.loop=false;
+//                        break;
+//
+//                    case  MotionEvent.ACTION_CANCEL:
+//                        anim.loop=true;
+//                        break;
+//
+//                    case  MotionEvent.ACTION_UP:
+//                        anim.loop=true;
+//                        break;
+//                }
+//                return false;
+//            }
+//        });
 
     }
 
@@ -196,8 +176,15 @@ public class Barrier extends Activity implements View.OnClickListener {
         }
     };
 
-//    int linertemplength=212;
-//    int motiontemp;
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mh.removeCallbacks(run);
+
+
+    }
 
     @Override
     public void onClick(View view) {
@@ -253,6 +240,8 @@ public class Barrier extends Activity implements View.OnClickListener {
         Configuration c = res.getConfiguration();
         c.fontScale = 1;
         res.updateConfiguration(c, res.getDisplayMetrics());
+
+        mh.post(run);
     }
 
 
@@ -266,13 +255,16 @@ public class Barrier extends Activity implements View.OnClickListener {
         i.setAction("UPDATE_LearnWord_Widget");
         sendBroadcast(i);
         unregisterReceiver(homeReceiver);
+        System.exit(0);
     }
 
     View v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20;
-    View v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36;
+    View v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40;
+    StageAnim anim;
 
     void loadstage() {
         v1 = findViewById(R.id.v1);
+
         v2 = findViewById(R.id.v2);
         v3 = findViewById(R.id.v3);
         v4 = findViewById(R.id.v4);
@@ -308,7 +300,14 @@ public class Barrier extends Activity implements View.OnClickListener {
         v34 = findViewById(R.id.v34);
         v35 = findViewById(R.id.v35);
         v36 = findViewById(R.id.v36);
-
+        v37 = findViewById(R.id.v37);
+        v38 = findViewById(R.id.v38);
+        v39 = findViewById(R.id.v39);
+        v40 = findViewById(R.id.v40);
+//
+//
+        anim=(StageAnim)findViewById(R.id.stageanim);
+        run.run();
 
         setstage(v1, 1);
         setstage(v2, 2);
@@ -346,25 +345,39 @@ public class Barrier extends Activity implements View.OnClickListener {
         setstage(v34, 34);
         setstage(v35, 35);
         setstage(v36, 36);
+        setstage(v37, 37);
+        setstage(v38, 38);
+        setstage(v39, 39);
+        setstage(v40, 40);
     }
 
-    TextView stagename, stagenum;
-    ImageView gift, locked;
-    RatingBar rate;
+    Runnable run=new Runnable() {
+        @Override
+        public void run() {
+            anim.postInvalidate();
+
+            mh.postDelayed(run,300);
+        }
+    };
+
+
+
+
 
     void setstage(View view, final int position) {
         if (position <= Util.curstage + 1) {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(Barrier.this, SelectWord.class);
-                    i.putExtra("stage", position);
-                    Util.stage = position;
-                    startActivity(i);
+//                    Intent i = new Intent(Barrier.this, SelectWord.class);
+//                    i.putExtra("stage", position);
+//                    Util.stage = position;
+//                    startActivity(i);
 //                   if(Warn.flag==false){
 //                       i=new Intent(Barrier.this,Warn.class);
 //                       startActivity(i);
 //                   }
+                    Log.i("postion",position+" ");
                 }
             });
         } else {
@@ -372,39 +385,15 @@ public class Barrier extends Activity implements View.OnClickListener {
                 @Override
                 public void onClick(View v) {
 //                   toptoast();
-                    Intent i = new Intent(Barrier.this, Warn.class);
-                    startActivity(i);
+//                    Intent i = new Intent(Barrier.this, Warn.class);
+//                    startActivity(i);
+                    Log.i("postion",position+" ");
                 }
             });
         }
 
-        stagename = (TextView) view.findViewById(R.id.stagename);
-        rate = (RatingBar) view.findViewById(R.id.rate);
-        stagenum = (TextView) view.findViewById(R.id.stagenum);
-        gift = (ImageView) view.findViewById(R.id.stage_gift);
-        locked = (ImageView) view.findViewById(R.id.stage_locked);
 
-        stagename.setText("第" + Util.toCHS(position) + "关");
-        stagenum.setText(position + "");
-        if ((position) % 6 == 0) {
-            gift.setVisibility(View.VISIBLE);
-        } else {
-            gift.setVisibility(View.GONE);
-        }
 
-        if (position > Util.curstage + 1) {
-            locked.setVisibility(View.VISIBLE);
-            stagenum.setVisibility(View.GONE);
-        } else {
-            locked.setVisibility(View.GONE);
-            stagenum.setVisibility(View.VISIBLE);
-        }
-
-        if (Util.spendtime[position] == 0) {
-            rate.setRating(0);
-        } else {
-            rate.setRating(rate(Util.spendtime[position]));
-        }
 
 
     }

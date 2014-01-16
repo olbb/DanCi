@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/root">
+
+    <include layout="@layout/titlebar" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="300dp"
+        android:layout_below="@id/titlebar"
+        android:layout_marginLeft="30dp"
+        android:layout_above="@id/bottombar"
+        android:layout_marginBottom="5dp"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:background="#DDDDDD"
+            android:layout_height="115dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/timericon"
+                android:layout_marginRight="10dp" />
+
+            <Chronometer
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="55dp"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/timer" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:background="#0272bc">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="28dp"
+                android:text="学习进度" />
+
+            <RelativeLayout
+                android:layout_width="165dp"
+                android:layout_marginStart="80dp"
+                android:layout_height="165dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <com.readboy.learnwordg.view.SmallPinBar
+                    android:layout_width="wrap_content"
+                    android:id="@+id/test_pinbar"
+                    android:layout_height="165dp"
+                    android:layout_centerInParent="true" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="30dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/orange"
+                        android:id="@+id/test_jindu"
+
+                        android:text="15" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="18dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/orange"
+
+                        android:text="%" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="未完成: 90%"
+                android:textColor="@color/white"
+                android:layout_gravity="right"
+                android:layout_marginEnd="20dp"
+                android:id="@+id/test_weiwanchen"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="已完成: 10%"
+                android:layout_marginTop="10dp"
+                android:id="@+id/test_yiwanchen"
+                android:textColor="@color/white"
+                android:layout_gravity="right"
+                android:textSize="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:gravity="bottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="22dp"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/test_dancishu"
+                    android:text="单词数: 10个"
+                    android:layout_marginTop="5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="22dp"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/test_zongtishu"
+                    android:text="总题数: 40个"
+                    android:layout_marginTop="5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="22dp"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/test_wanchenshu"
+                    android:text="已完成: 0个"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="30dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <include
+        layout="@layout/test_translate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="350dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="40dp"
+        android:layout_below="@id/titlebar" />
+
+    <include
+        layout="@layout/spellword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="350dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="40dp"
+        android:layout_below="@id/titlebar"
+        android:layout_marginBottom="80dp" />
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/defrect"
+        android:id="@+id/bottombar">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="30dp"
+            android:singleLine="true"
+            android:textSize="20dp"
+            android:id="@+id/tips"
+            android:text=""
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
+            android:orientation="horizontal"
+            android:id="@+id/btns"
+            android:gravity="center_vertical">
+
+            <Button
+                style="@style/OthBtn"
+                android:layout_width="wrap_content"
+                android:text="@string/gobacklearn"
+                android:id="@+id/gobacklearn"
+                android:visibility="gone" />
+
+            <Button
+                style="@style/OthBtn"
+                android:layout_width="wrap_content"
+                android:text="@string/goontest"
+                android:id="@+id/goontest"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.7.+'
+    }
+}
+apply plugin: 'android'
+
+repositories {
+    mavenCentral()
+}
+android {
+    buildToolsVersion '19.0.0'
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 19
+        compileSdkVersion 19
+    }
+
+}
+
+
+dependencies {
+    compile files('libs/apache-mime4j-0.6.jar')
+//    compile files('libs/armeabi.jar')
+    compile files('libs/httpmime-4.1.2.jar')
+    compile files('libs/armeabi/libaiengine.so')
+    compile files('libs/armeabi/libaiet.so')
+    compile files('libs/armeabi/libTestAiWrite.so')
+}

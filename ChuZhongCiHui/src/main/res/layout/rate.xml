@@ -124,7 +124,7 @@
 
             <TextView
                 android:text="当前称号"
-                android:textSize="22sp"
+                android:textSize="22sp" android:id="@+id/chorcj"
                 android:layout_marginRight="15dp" />
 
             <TextView

@@ -1,0 +1,39 @@
+<resources>
+
+    <string name="app_name">单词达人（高中版）</string>
+    <string name="word_exampl">应用例句</string>
+    <string name="word_spell">拼写</string>
+    <string name="word_read">跟读</string>
+
+    <string name="readgrade1">这次没读好，加油！</string>
+    <string name="readgrade2">勉强过关，再加把劲！</string>
+    <string name="readgrade3">还可以，有待提高哦！</string>
+    <string name="readgrade4">读得不错哦！</string>
+    <string name="readgrade5">读得真标准！</string>
+    <string name="gobacklearn">返回学习</string>
+    <string name="goontest">继续测试</string>
+
+    <string name="wrongwordsbook">错词本</string>
+    <string name="rankinglist">排行榜</string>
+    <string name="myrates">我的进度</string>
+    <string name="game_sucess">恭喜你,闯关成功!</string>
+    <string name="game_failed">很遗憾,闯关失败!</string>
+    <string name="tips_usecurrentword">请使用本关学习的单词</string>
+
+    <string name="chenghao0">无名小卒</string>
+    <string name="chenghao1">天天向上</string>
+    <string name="chenghao2">得心应手</string>
+    <string name="chenghao3">单词精英</string>
+    <string name="chenghao4">势如破竹</string>
+    <string name="chenghao5">过关斩将</string>
+    <string name="chenghao6">单词高手</string>
+    <string name="chenghao7">才高八斗</string>
+    <string name="chenghao8">单词达人</string>
+
+
+    <string name="next">下一个</string>
+    <string name="last">上一个</string>
+    <string name="gotest">开始测试</string>
+
+
+</resources>

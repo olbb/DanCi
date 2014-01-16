@@ -69,13 +69,14 @@ public class BackMusic {
             mp2.reset();
 //			mp.setDataSource(context, Uri.fromFile(new File(path+"sound/"+file+".wav")));
             AssetFileDescriptor fd = context.getAssets().openFd("sound/" + file + ".wav");
-//            System.out.println("sound/"+file+".wav");
+            System.out.println("sound/"+file+".wav");
 
             mp2.setDataSource(fd.getFileDescriptor(), fd.getStartOffset(), fd.getLength());
             mp2.prepare();
             mp2.start();
         } catch (Exception e) {
             // TODO: handle exception
+//            e.printStackTrace();
         }
 
     }

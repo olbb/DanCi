@@ -3,6 +3,7 @@ package com.readboy.learnwordx;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.readboy.learnwordx.util.Util;
@@ -18,11 +19,13 @@ public class ChengHao {
     ImageView chenghao;
     TextView name;
     Dialog dialog;
+    RelativeLayout bg;
 
     public ChengHao(final TestWords context) {
 
         dialog = new Dialog(context, R.style.dialog);
         dialog.setContentView(R.layout.jiangzhuang);
+        bg=(RelativeLayout)dialog.findViewById(R.id.jz_bg);
         chenghao = (ImageView) dialog.findViewById(R.id.chenghao);
         chenghao.setImageResource(getCHDrawable(Util.stage / 6));
         name = (TextView) dialog.findViewById(R.id.chenghao_name);
@@ -32,6 +35,12 @@ public class ChengHao {
         } else {
             username = "Dear";
         }
+        if(Util.cj[Util.curstage/5]==1){
+            bg.setBackgroundResource(R.drawable.jz_ch);
+        }else {
+            bg.setBackgroundResource(R.drawable.jz_cj);
+        }
+
         name.setText(username);
 
         dialog.show();

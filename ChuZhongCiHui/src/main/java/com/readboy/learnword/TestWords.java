@@ -66,6 +66,8 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
     TextView spelltop;
     TextView spellbottom;
 
+    boolean endflag;
+
     public RadioGroup answer;
     public RadioButton a, b, c, d;
     ImageView ia, ib, ic, id, ir;
@@ -102,7 +104,7 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
         Util.curstate = "TestWord";
 
         instance = this;
-
+        endflag=false;
 
         im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 //        Log.i(tag,"TestWords onCreate");
@@ -394,16 +396,13 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
 //            Util.re.setWord(word.word);
             updateui();
         } else {
-//            timer.stop();
+            try{
+                wait(300);
+            }catch (Exception e){
 
-//            temptime= timer.getBase();
-//            long temp=SystemClock.elapsedRealtime()-temptime;
-//            long temp=SystemClock.elapsedRealtime()-temptime;
-//            long temp=costtime-600;
-//            int min=(int)temp/1000/60;
-//            int second=(int)temp/1000%60;
+            }
+
             String time = timer.getText().toString();
-//            Log.e("LearnWord",time);
             String[] ts = time.split(":");
             int min, second;
             int temp;
@@ -644,7 +643,7 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
     protected void onResume() {
         super.onResume();
         bm.playflag = true;
-        if (temptime != 0) {
+        if (temptime != 0&&!endflag) {
             timer.setBase(timer.getBase() + (SystemClock.elapsedRealtime() - temptime));
             timer.start();
         }
@@ -658,6 +657,7 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
         Configuration c = res.getConfiguration();
         c.fontScale = 1;
         res.updateConfiguration(c, res.getDisplayMetrics());
+
 
 
 //        if(tempscond!=0&&goon.VISIBLE==View.GONE){
@@ -1102,22 +1102,27 @@ public class TestWords extends Activity implements RadioGroup.OnCheckedChangeLis
 //        }
         timer.setOnChronometerTickListener(null);
 
-        List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+        try{
+            List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 //        long temp= SystemClock.elapsedRealtime()-timer.getBase();
 //        if(testwords.size()==0){
 //            int second=(int)costtime/1000;
 //        }else{
 //            int second=(int)temp/1000;
 //        }
-        String time = timer.getText().toString();
-        String s[] = time.split(":");
-        int second = Integer.parseInt(s[0]) * 60 + Integer.parseInt(s[1]);
+            String time = timer.getText().toString();
+            String s[] = time.split(":");
+            int second = Integer.parseInt(s[0]) * 60 + Integer.parseInt(s[1]);
 
 
 //        Log.d(tag,"LearnWord addtime:"+second);
-        NameValuePair pair = new BasicNameValuePair("time", second + "");
-        pairs.add(pair);
-        Util.httpPost(Util.sendtime, pairs);
+            NameValuePair pair = new BasicNameValuePair("time", second + "");
+            pairs.add(pair);
+            Util.httpPost(Util.sendtime, pairs);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         Entrance.writebardata();
 
         mh.removeCallbacks(musicnewstage);

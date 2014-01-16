@@ -18,13 +18,15 @@ import com.readboy.learnwordx.view.PinBar;
  */
 public class Rate extends Activity {
 
-    TextView jindu, yibei, yongshi, yiwanchen, design;
+    TextView jindu, yibei, yongshi, yiwanchen, design,chorcj;
     Button close, chuanguan;
     PinBar pinbar;
 
     BackMusic bm;
 
     public static Rate instance;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,14 @@ public class Rate extends Activity {
         chuanguan = (Button) findViewById(R.id.rate_chuanguan);
         design = (TextView) findViewById(R.id.rate_design);
         bm = new BackMusic(this);
+
+        chorcj = (TextView) findViewById(R.id.chorcj);
+
+        if(Util.cj[Util.curstage/5]==1){
+            chorcj.setText("当前称号");
+        }else {
+            chorcj.setText("当前成就");
+        }
 
 
         close.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +80,7 @@ public class Rate extends Activity {
 //        yiwanchen.setText(""+(Util.curstage-1)*5);
         yiwanchen.setText(100 + "");
 
-        jindu.setText("" + (Util.curstage) + "/36");
+        jindu.setText("" + (Util.curstage) + "/40");
         yibei.setText("" + (Util.curstage) * 10);
         pinbar.setPrecent(0);
 //        aimprecent=Util.curstage*5-5;
@@ -82,7 +92,7 @@ public class Rate extends Activity {
         if (mh == null) {
             mh = new Handler();
         }
-        aimprecent = (Util.curstage) * 100 / 36 + 100;
+        aimprecent = (Util.curstage) * 100 / 40 + 100;
 //        aimprecent=200;
         mh.postDelayed(pre, 300);
         mh.postDelayed(new Runnable() {

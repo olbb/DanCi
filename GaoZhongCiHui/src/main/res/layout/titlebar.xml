@@ -1,0 +1,63 @@
+<RelativeLayout
+    android:id="@+id/titlebar"
+    android:layout_width="fill_parent"
+    android:layout_height="100dp"
+    android:splitMotionEvents="false"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="28dp"
+        android:layout_width="wrap_content"
+        android:src="@drawable/danci_title" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:splitMotionEvents="false"
+        android:layout_marginRight="10dp">
+
+
+        <Button
+            android:id="@+id/home"
+            android:layout_marginRight="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_home" />
+
+
+        <ToggleButton
+            android:id="@+id/music"
+            android:layout_marginRight="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_voc"
+            android:textOn=""
+            android:textOff=""
+
+            android:checked="true" />
+
+
+        <Button
+            android:id="@+id/config"
+            android:background="@drawable/btn_config"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_height="wrap_content" />
+
+
+        <Button
+            android:id="@+id/close"
+            android:background="@drawable/btn_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</RelativeLayout>
+

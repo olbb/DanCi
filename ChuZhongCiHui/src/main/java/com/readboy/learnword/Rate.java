@@ -18,7 +18,7 @@ import com.readboy.learnword.view.PinBar;
  */
 public class Rate extends Activity {
 
-    TextView jindu, yibei, yongshi, yiwanchen, design;
+    TextView jindu, yibei, yongshi, yiwanchen, design,chorcj;
     Button close, chuanguan;
     PinBar pinbar;
 
@@ -42,6 +42,14 @@ public class Rate extends Activity {
         chuanguan = (Button) findViewById(R.id.rate_chuanguan);
         design = (TextView) findViewById(R.id.rate_design);
         bm = new BackMusic(this);
+
+        chorcj = (TextView) findViewById(R.id.chorcj);
+
+        if(Util.cj[Util.curstage/6]==1){
+            chorcj.setText("当前称号");
+        }else {
+            chorcj.setText("当前成就");
+        }
 
 
         close.setOnClickListener(new View.OnClickListener() {

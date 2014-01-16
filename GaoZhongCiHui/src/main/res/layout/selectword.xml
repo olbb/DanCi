@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/selectwordroot">
+
+    <include
+        layout="@layout/titlebar"
+        android:id="@+id/titlebar" />
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titlebar"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="1dp"
+        android:orientation="vertical"
+        android:id="@+id/wordbar">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/titles"
+                android:textSize="25dp"
+                android:text="请勾选要强化训练的单词"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="3dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="15dp"
+                android:typeface="serif"
+                android:id="@+id/titles2"
+                android:layout_height="wrap_content"
+                android:text="(2倍题目数)" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="#6ac4e9"
+            android:gravity="center_vertical">
+
+            <RelativeLayout
+                android:layout_width="118dp"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/selectall"
+                    android:layout_centerInParent="true"
+                    android:button="@drawable/check_box" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:id="@+id/listitem"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:background="#c9eaf7" />
+
+
+                <TextView
+                    android:layout_width="240dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="单词"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:background="#c9eaf7" />
+
+                <TextView
+                    android:layout_width="240dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="18dp"
+                    android:singleLine="true"
+                    android:text="词义"
+                    android:textColor="@color/white" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:background="#c9eaf7" />
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="18dp"
+                    android:singleLine="true"
+                    android:text="发音"
+                    android:textColor="@color/white" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:background="#c9eaf7"
+                    android:id="@+id/t2" />
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="18dp"
+                    android:singleLine="true"
+                    android:text="强化"
+                    android:textColor="@color/white"
+                    android:id="@+id/t3" />
+
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:text="已选 1 个/总共105个  "
+                    android:id="@+id/checkednums"
+                    android:gravity="end" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--<View android:layout_width="fill_parent" android:layout_height="2dp" android:background="@color/dblue"/>-->
+
+        <!--<include layout="@layout/previewword"/>-->
+
+
+        <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="480dp"
+            android:id="@+id/words"
+            android:divider="#ffffff"
+            android:dividerHeight="0dp"
+            android:listSelector="@drawable/list_selector"></ListView>
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/wordbar"
+        android:background="@drawable/defrect">
+
+
+        <TextView
+            android:layout_marginLeft="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/t1"
+            android:visibility="visible"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:text="" />
+        <!--android:text="备注:没有勾选的单词在测试也会有少量（2种方式）测试，以减少对熟词的误判。"-->
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp">
+
+            <Button
+                style="@style/OthBtn"
+                android:text="马上测试"
+                android:id="@+id/gotest" />
+
+            <Button
+                style="@style/OthBtn"
+                android:text="开始学习"
+                android:id="@+id/golearn" />
+
+            <Button
+                style="@style/OthBtn"
+                android:text="    删除    "
+                android:id="@+id/godel"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#acacac"
+        android:visibility="gone"
+        android:id="@+id/isempty"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:text="还没有错词!\n错词本也是学习的好工具哦!" />
+
+</RelativeLayout>

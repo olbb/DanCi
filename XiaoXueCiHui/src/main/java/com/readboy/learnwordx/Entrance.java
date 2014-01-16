@@ -35,7 +35,7 @@ public class Entrance extends Activity {
         }
         rt = new ReadboyTextView(this);
         rt = null;
-        Util.copyfile(this, "chuzhongcihui.rf4");
+        Util.copyfile(this, "xiaoxuecihui.rf4");
         Util.copyfile(this, "bcdkey.BIN");
         Util.copyfile(this, "letter.BIN");
 
@@ -58,23 +58,33 @@ public class Entrance extends Activity {
         Intent j = new Intent(Entrance.this, Barrier.class);
         startActivity(j);
 
-        Intent i = new Intent();
-        i.setClass(this, Rate.class);
-        startActivity(i);
+//        Intent i = new Intent();
+//        i.setClass(this, Rate.class);
+//        startActivity(i);
         Warn.flag = true;
         readuserinfo();
         finish();
 
-//        setContentView(R.layout.cihuiwidget);
-//        MagicRing mr=(MagicRing)findViewById(R.id.widget_jindu);
-//        mr.setColor(Color.GREEN);
-//        mr.setStrokeWidth(20);
+//        bm=new BackMusic(this);
+//        mh=new Handler();
+//        run.run();
+
 //
-//
-//        mr.setTextSize(40);
-//        mr.setRate(70);
 
     }
+
+//    int i=0;
+//    BackMusic bm;
+//    Handler mh;
+//    Runnable run=new Runnable() {
+//        @Override
+//        public void run() {
+//            i++;
+//            bm.play2("chenghao"+i);
+//            if(i>8)return;
+//            mh.postDelayed(run,3000);
+//        }
+//    };
 
     public static final String USERINFO_PATH = "mnt/sdcard/.readboy/profile/userInfo.txt";
 
@@ -107,7 +117,7 @@ public class Entrance extends Activity {
 
         ed.putInt("curstage", Util.curstage);
         String t1;
-        for (int i = 1; i <= 36; i++) {
+        for (int i = 1; i <= 40; i++) {
             t1 = "Stage" + (i) + "besttime";
             ed.putInt(t1, Util.spendtime[i]);
         }

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MyView
+    android:layout_width="393dp"
+    android:layout_height="407dp"
+    android:id="@+id/widget_goto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_height="wrap_content"
+        android:id="@+id/widget_image"
+        android:layout_width="wrap_content"
+        android:src="@drawable/dcdr_cz" />
+
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
+        android:id="@+id/widget_stage"
+        android:textSize="86dp"
+        android:text="13"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="75%"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:id="@+id/widget_yiwanchen"
+        android:layout_marginLeft="324dp"
+        android:layout_marginTop="302dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="25%"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:id="@+id/widget_weiwanchen"
+        android:layout_marginLeft="324dp"
+        android:layout_marginTop="326dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textSize="18dp"
+        android:textColor="@color/white"
+        android:text="30时18分"
+        android:id="@+id/widget_zongyongshi"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="325dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textSize="40dp"
+        android:textColor="@color/white"
+        android:text="--"
+        android:id="@+id/widget_paiming"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="248dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@id/widget_paiming"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:layout_marginTop="270dp"
+        android:id="@+id/widget_ming"
+        android:layout_height="wrap_content" />
+
+    <MagicRing
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:id="@+id/widget_jindu"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="108dp" />
+
+
+</MyView>

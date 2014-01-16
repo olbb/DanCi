@@ -82,7 +82,7 @@ public class Tips implements View.OnClickListener {
             case R.id.tips_goon:
                 dialog.cancel();
                 Util.finish();
-                if (Util.stage < 36) {
+                if (Util.stage < 40) {
                     Util.stage++;
 //                    Barrier.instance.barad.notifyDataSetChanged();
 //                SelectWord.instance.update();

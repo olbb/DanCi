@@ -35,6 +35,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
@@ -61,7 +62,7 @@ public class Util {
     public static String curstate;
     public static String dir;
     public static User user;
-    //    public static String url="http://192.168.16.133/API/word.php/";
+//        public static String url="http://192.168.16.145/API/word.php/";
 //    public static String url="http://42.96.131.4/API/word.php/";
     public static String url = "http://wkt.hgclass.com/MacAPI/word.php/";
 
@@ -81,12 +82,17 @@ public class Util {
     public static String getstage = "levelWeek";//获取通关效率榜
     public static String upload = "upload";//上传图片
 
+    static NameValuePair gradepair = new BasicNameValuePair("grade","1");
+
+    //称号成就对应表
+    public static int cj[]=new int[]{0,0,0,1,0,0,1,0,1};
+
 
     public int getcurstage() {
         return curstage;
     }
 
-    public static int[] spendtime = new int[37];
+    public static int[] spendtime = new int[41];
 
     //阿拉伯数字转化为汉字数字
     public static String toCHS(int i) {
@@ -205,6 +211,7 @@ public class Util {
     }
 
     public static void finish() {
+        Log.i("","LearnWord finished");
         try {
             LearnErrorWord.instance.finish();
         } catch (Exception e) {
@@ -264,6 +271,7 @@ public class Util {
         if (user == null || user.uid == 0) {
             return;
         }
+        pairs.add(gradepair);
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -312,7 +320,7 @@ public class Util {
             @Override
             public void run() {
                 HttpClient httpClient = new DefaultHttpClient();
-                HttpGet httpGet = new HttpGet(url + TYPE);
+                HttpGet httpGet = new HttpGet(url + TYPE+"?grade=1");
 //               httpGet.addHeader("id",user.uid+"");
                 httpGet.addHeader("uuid", user.uid + "");
                 HttpResponse httpResponse;

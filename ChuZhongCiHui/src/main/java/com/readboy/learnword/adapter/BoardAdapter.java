@@ -1,6 +1,7 @@
 package com.readboy.learnword.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
@@ -15,6 +16,7 @@ import com.readboy.learnword.R;
 import com.readboy.learnword.util.User;
 import com.readboy.learnword.util.Util;
 
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -147,13 +149,37 @@ public class BoardAdapter extends BaseAdapter {
                             });
 
 
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                        } catch (FileNotFoundException e) {
+//                            e.printStackTrace();
+                            Resources r = context.getResources();
+                            InputStream is = r.openRawResource(R.drawable.defaultimg);
+                            user.userimg=Drawable.createFromStream(is,null);
+                            try {
+                                is.close();
+                            }catch (Exception ee){
+//                                ee.printStackTrace();
+                            }
+
+                            mh.post(new Runnable() {
+                                @Override
+                                public void run() {
+//                                    viewHolder.img.setImageDrawable(user.userimg);
+                                    notifyDataSetChanged();
+                                }
+                            });
+                        }catch (Exception e){
+//                            e.printStackTrace();
                         }
 
                     }
                 });
                 thread.start();
+                if (threads != null) {
+                    threads.add(thread);
+                } else {
+                    threads = new ArrayList<Thread>();
+                    threads.add(thread);
+                }
             }
 
         } catch (Exception e) {
@@ -212,5 +238,16 @@ public class BoardAdapter extends BaseAdapter {
         }
     }
 
+    static List<Thread> threads;
+
+    public void recycle(){
+        if (threads == null || threads.size() == 0) {
+            return;
+        }
+        for (Thread thread : threads) {
+            thread.interrupt();
+        }
+        threads.clear();
+    }
 
 }

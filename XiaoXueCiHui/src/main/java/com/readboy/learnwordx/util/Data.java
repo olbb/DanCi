@@ -55,7 +55,7 @@ public class Data {
 //			keyfile =new RandomAccessFile("/mnt/sdcard/wwlt/bcdkey.BIN", "r");
 //			letterfile=new RandomAccessFile("/mnt/sdcard/wwlt/letter.BIN", "r");
 
-            datafile = new RandomAccessFile(Util.dir + "chuzhongcihui.rf4", "r");
+            datafile = new RandomAccessFile(Util.dir + "xiaoxuecihui.rf4", "r");
             keyfile = new RandomAccessFile(Util.dir + "bcdkey.BIN", "r");
             letterfile = new RandomAccessFile(Util.dir + "letter.BIN", "r");
 

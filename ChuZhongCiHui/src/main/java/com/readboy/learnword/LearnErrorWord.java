@@ -492,6 +492,7 @@ public class LearnErrorWord extends Activity implements OnClickListener, OnCheck
             im.showSoftInput(spell_text, InputMethodManager.SHOW_FORCED);
             spell_del.setVisibility(View.GONE);
             spell_touch.setVisibility(View.GONE);
+            spell_text.setSelection(spell_text.getText().toString().length());
         }
 
     }
